@@ -5,9 +5,9 @@ import { ProductComponent } from './product.component';
 
 @NgModule({
   imports: [
-    CommonModule, ProductComponent
+    CommonModule
   ],
   exports: [ ProductComponent ],
-  declarations: []
+  declarations: [ ProductComponent ]
 })
 export class ProductModule { }

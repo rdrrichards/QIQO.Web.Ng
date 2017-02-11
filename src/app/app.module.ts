@@ -3,26 +3,30 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ProductModule } from './product/product.module';
+import { AccountModule } from './account/account.module';
 
 import { AppComponent } from './app.component';
-import { AccountComponent } from './account/account.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { routing, appRoutingProviders } from './app.routes';
-import { ProductComponent } from './product/product.component';
+
+import { ProductService } from './product/product.service';
+import { AccountService } from './account/account.service';
+import { OrderService } from './orders/order.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccountComponent,
-    WelcomeComponent,
-    ProductComponent
+    // AccountComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule, routing
+    HttpModule,
+    AccountModule,
+    ProductModule, routing
   ],
-  providers: [appRoutingProviders],
-  bootstrap: [AppComponent]
+  providers: [ appRoutingProviders, ProductService, AccountService, OrderService ],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}
