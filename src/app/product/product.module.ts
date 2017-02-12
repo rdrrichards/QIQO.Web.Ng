@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { ProductComponent } from './product.component';
+import { ProductListComponent } from './product-list.component';
+import { ProductHomeComponent } from './product-home.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule, FormsModule, RouterModule
   ],
-  exports: [ ProductComponent ],
-  declarations: [ ProductComponent ]
+  exports: [ ProductHomeComponent, ProductListComponent, ProductComponent ],
+  declarations: [ ProductHomeComponent, ProductListComponent, ProductComponent ]
 })
 export class ProductModule { }

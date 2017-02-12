@@ -1,0 +1,75 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div>
+        <div *ngIf="!page">Loading products...</div>
+        <div *ngIf="page">
+            <div class="panel panel-primary">
+                <span>
+                    <div class="form-group panel panel-secondary">
+                        <label for="selectedCategory">Product Category</label>
+                        <select [(ngModel)]="selectedCategory" 
+                            required (onChange)="categoryChanged()">
+                            <option *ngFor="let pc of prod_cats" [value]="pc[0]">{{pc[1]}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group panel panel-secondary">
+                        <label for="perPageCnt">Products per Page</label>
+                        <select [(ngModel)]="perPageCnt" required (change)="pageCountChanged($event.target.value)">
+                            <option *ngFor="let c of per_page_options" [value]="c">{{c}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group panel panel-secondary">
+                        <label for="orderBy">Sort By</label>
+                        <select [(ngModel)]="orderBy" required (change)="orderByChanged($event.target.value)">
+                            <option *ngFor="let oc of order_cats" [value]="oc[0]">{{oc[1]}}</option>
+                        </select>
+                    </div>
+                </span>
+                <div class="panel-body">
+                    <div class="row">
+                        <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Key</td>
+                            <td>Product Code</td>
+                            <td>Product Name</td>
+                            <td>Product Decription</td>
+                            <td>Product Type</td>
+                            <td>Product Short Decription</td>
+                            <td>Product Long Description</td>
+                            <td>Product Image Path</td>
+                            <td>Product Default Price</td>
+                            <td>Product Default Quantity</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let product of page.results">
+                            <td><a [routerLink]="['/products', product.productKey]" href="">{{product.productKey}}</a></td>
+                            <td>{{ product.productCode }}</td>
+                            <td>{{ product.productName }}</td>
+                            <td>{{ product.productDesc }}</td>
+                            <td>{{ product.productType }}</td>
+                            <td>{{ product.productShortDesc }}</td>
+                            <td>{{ product.productLongDesc }}</td>
+                            <td>{{ product.productImagePath }}</td>
+                            <td>{{ product.productBasePrice | currency }}</td>
+                            <td>{{ product.productBaseQuantity | number }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+            <div class='panel-footer'>
+                Page {{page.currentPage}} of {{page.totalPages}} pages ({{page.totalCount}} Product(s) total); Category: {{page.category}}; Sort: {{page.orderBy}} 
+                
+                <button (click)="next(page.currentPage - 1, page.pageSize, page.orderBy, page.category)" [disabled]="canGoBack()">Prior</button>
+                &nbsp;
+                <button (click)="next(page.currentPage + 1, page.pageSize, page.orderBy, page.category)" [disabled]="canGoForward()">Next</button>
+            </div>
+        </div>
+        <!--<product-detail>Product details here...</product-detail>-->
+    </div>
+</div>

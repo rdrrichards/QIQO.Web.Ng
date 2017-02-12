@@ -1,3 +1,71 @@
-<p>
-  product works!
-</p>
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div *ngIf="!product">Loading product...</div>
+        <div *ngIf="product">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Key</td>
+                            <td>Product Code</td>
+                            <td>Product Name</td>
+                            <td>Product Type</td>
+                            <td>Product Short Decription</td>
+                            <td>Product Long Description</td>
+                            <td>Product Image Path</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr >
+                            <td>{{ product.productKey }} </td>
+                            <td>{{ product.productCode }}</td>
+                            <td>{{ product.productName }}</td>
+                            <td>{{ product.productType }}</td>
+                            <td>{{ product.productShortDesc }}</td>
+                            <td>{{ product.productLongDesc }}</td>
+                            <td>{{ product.productImagePath }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input type="text" class="form-control" id="productName" [(ngModel)]="product.productName">
+            </div>
+            <div class="form-group">
+                <label for="productDesc">Product Description:</label>
+                <input type="text" class="form-control" id="productDesc" [(ngModel)]="product.productDesc">
+            </div>
+            <div class="form-group">
+                <label for="productShortDesc">Product Short Name:</label>
+                <input type="text" class="form-control" id="productShortDesc" [(ngModel)]="product.productShortDesc">
+            </div>
+            <div class="form-group">
+                <label for="productLongDesc">Product Long Name:</label>
+                <input type="text" class="form-control" id="productLongDesc" [(ngModel)]="product.productLongDesc">
+            </div>
+            <div class="form-group">
+                <label for="productImagePath">Product Image Path:</label>
+                <input type="text" class="form-control" id="productImagePath" [(ngModel)]="product.productImagePath">
+            </div>
+            
+            <div>
+                <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="updateProduct()">Save</button>
+                &nbsp;
+                <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="cancel()">Cancel</button>
+                &nbsp;
+                <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="deleteProduct()">Delete</button>
+                &nbsp;
+                <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="addToCart(product)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
