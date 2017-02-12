@@ -1,0 +1,46 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div *ngIf="!orders">Loading orders...</div>
+        <div *ngIf="orders">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Order Number</td>
+                            <td>Account Code</td>
+                            <td>Account Name</td>
+                            <td>Order Entry Date
+                            <td>Order Status</td>
+                            <td>Order Due Date</td>
+                            <td>Order Item Count</td>
+                            <td>Order Value</td>
+                            <td>Sale Rep Name</td>
+                            <td>Account Rep Name</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let order of orders">
+                            <td><a [routerLink]="['/orders', order.orderKey]" href="">{{order.orderNumber}}</a></td>
+                            <td>{{ order.account.accountCode }}</td>
+                            <td>{{ order.account.accountName }}</td>
+                            <td>{{ order.orderEntryDate }}</td>
+                            <td>{{ order.orderStatus }}</td>
+                            <td>{{ order.orderDeliverByDate }}</td>
+                            <td>{{ order.orderItemCount }}</td>
+                            <td>{{ order.orderValueSum | currency }}</td>
+                            <td>{{ order.salesRepName }}</td>
+                            <td>{{ order.accountRepName }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { ProductModule } from './product/product.module';
 import { AccountModule } from './account/account.module';
 import { WelcomeModule } from './home/welcome.module';
+import { OrdersModule } from './orders/orders.module';
 
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routes';
@@ -24,6 +25,7 @@ import { OrderService } from './orders/order.service';
     AccountModule,
     ProductModule,
     WelcomeModule,
+    OrdersModule,
     routing
   ],
   providers: [ appRoutingProviders, ProductService, AccountService, OrderService ],

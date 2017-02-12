@@ -5,6 +5,7 @@
                     <li><a [routerLink]="['/']">Home</a></li>
                     <li><a [routerLink]="['/products']">Products</a></li>
                     <li><a [routerLink]="['/accounts']">Account</a></li>
+                    <li><a [routerLink]="['/orders']">Orders</a></li>
                     <li *ngIf="!isUserLoggedIn()"><a [routerLink]="['/register']">Register</a></li>
                     <li *ngIf="!isUserLoggedIn()">
                         <a [routerLink]="['/login']">Login</a>
@@ -12,8 +13,8 @@
                     <li *ngIf="isUserLoggedIn()">
                         <a [routerLink]="['/']" (click)="logout()">Logout</a>
                     </li>
-                    <li><a [routerLink]="['/cart']">Cart</a></li>
-                    <li><a [routerLink]="['/accounts']">{{getUserName()}}</a></li>
+                    <!--<li><a [routerLink]="['/cart']">Cart</a></li>-->
+                    <!--<li><a [routerLink]="['/accounts']">{{getUserName()}}</a></li>-->
                 </ul>
             </div>
         </nav>

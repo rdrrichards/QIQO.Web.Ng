@@ -1,0 +1,36 @@
+<div *ngIf="!order">Loading order...</div>
+<div *ngIf="order">
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="font-size:large">
+            Order selected {{order.orderNumber}} for {{order.account.accountName}}
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <table class="table">
+                <thead>
+                <tr>
+                    <td>Seq.</td>
+                    <td>Product Code</td>
+                    <td>Product Name</td>
+                    <td>Quantity</td>
+                    <td>Item Cost</td>
+                    <td>Line Total</td>
+                    <td>Line Status</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let order_item of order.orderItems">
+                    <td>{{ order_item.orderItemSeq }} </td>
+                    <td>{{ order_item.productName }}</td>
+                    <td>{{ order_item.productDesc }}</td>
+                    <td>{{ order_item.quantity }}</td>
+                    <td>{{ order_item.orderItemPrice | currency }}</td>
+                    <td>{{ order_item.orderLineTotal | currency }}</td>
+                    <td>{{ order_item.orderItemStatus }}</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
