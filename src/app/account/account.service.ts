@@ -23,14 +23,14 @@ export class AccountService {
   getAccounts(): Observable<IAccount[]> {
     return this.http.get(this._accountsUrl)
       .map(response => <IAccount[]>response.json())
-      .do(data => console.log('All: ' + JSON.stringify(data)))
+      // .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
   getAccount(id: number): Observable<IAccount> {
     return this.http.get(this._accountsUrl + '/' + id)
       .map(response => <IAccount>response.json())
-      .do(data => console.log('All: ' + JSON.stringify(data)))
+      // .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 

@@ -31,7 +31,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      const id = 2; // +params['id']; // (+) converts string 'id' to a number
+      const id = +params['id']; // (+) converts string 'id' to a number
       this._id = id;
       this.pageTitle += `: ${id}`;
       console.log('Trying to get param and call getAccount');
