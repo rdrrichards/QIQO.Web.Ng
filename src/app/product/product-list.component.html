@@ -10,7 +10,7 @@
                     <div class="form-group panel panel-secondary">
                         <label for="selectedCategory">Product Category</label>
                         <select [(ngModel)]="selectedCategory" 
-                            required (onChange)="categoryChanged()">
+                            required (change)="categoryChanged()">
                             <option *ngFor="let pc of prod_cats" [value]="pc[0]">{{pc[1]}}</option>
                         </select>
                     </div>

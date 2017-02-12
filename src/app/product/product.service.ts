@@ -22,7 +22,7 @@ export class ProductService {
     getProducts(): Observable<IProduct[]> {
         return this.http.get(this._productsUrl)
             .map(response => <IProduct[]>response.json().results)
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            // .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -31,14 +31,14 @@ export class ProductService {
         console.log(url);
         return this.http.get(url)
             .map(response => <IProductPage>response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            // .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     getProduct(id: number): Observable<IProduct> {
         return this.http.get(`${this._productsUrl}/${id}`)
             .map(response => <IProduct>response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            // .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 

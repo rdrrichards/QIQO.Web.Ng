@@ -39,7 +39,6 @@ export class ProductComponent implements OnInit {
         this.sub = this.route.params.subscribe(params => {
             const id = +params['id']; // (+) converts string 'id' to a number
             this.pageTitle += `: ${id}`;
-            console.log('Trying to get param and call getAccount');
             console.log('Account id from the params: ' + id);
             this._productService.getProduct(id)
             .subscribe(
