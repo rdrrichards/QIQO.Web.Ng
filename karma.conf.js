@@ -9,7 +9,9 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
+      require('@angular/router'),
+      require('@angular/forms')
     ],
     files: [
       { pattern: './src/test.ts', watched: false }
