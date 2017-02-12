@@ -12,8 +12,8 @@ import { Login, IRegister } from '../models/login';
 @Injectable()
 export class AccountService {
   private _headers = new Headers();
-  private _accountsUrl = '';
-  private _authUrl = '';
+  private _accountsUrl = 'http://localhost:49847/api/accounts';
+  private _authUrl = 'http://localhost:49847/api/auth';
 
   constructor(private http: Http) {
     this._headers.append('Content-Type', 'application/json');
