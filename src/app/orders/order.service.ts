@@ -8,9 +8,9 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class OrderService {
-    private _ordersUrl = 'http://localhost:49847/api/orders';
-    private _openOrdersUrl = 'http://localhost:49847/api/openorders';
-    private _accountsUrl = 'http://localhost:49847/api/accounts';
+    private _ordersUrl = 'http://localhost:34479/api/orders';
+    private _openOrdersUrl = 'http://localhost:34479/api/openorders';
+    private _accountsUrl = 'http://localhost:34479/api/accounts';
 
     constructor(private http: Http) { }
 

@@ -11,12 +11,12 @@ import { IProduct } from '../models/product';
 
 @Injectable()
 export class ProductService {
-  private _productsUrl = 'http://localhost:49847/api/products';
+  private _productsUrl = 'http://localhost:34479/api/products';
   private _headers = new Headers();
 
   constructor(private http: Http) {
-        this._headers.append('Content-Type','application/json');
-        this._headers.append('Authorization',`Bearer ${localStorage.getItem('id_token')}`);
+        this._headers.append('Content-Type', 'application/json');
+        this._headers.append('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
       }
 
     getProducts(): Observable<IProduct[]> {
