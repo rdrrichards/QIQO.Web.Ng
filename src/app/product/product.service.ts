@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
+import { CONFIG } from '../shared/config';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -11,7 +12,7 @@ import { IProduct } from '../models/product';
 
 @Injectable()
 export class ProductService {
-  private _productsUrl = 'http://localhost:34479/api/products';
+  private _productsUrl = CONFIG.baseUrls.products; // 'http://localhost:34479/api/products';
   private _headers = new Headers();
 
   constructor(private http: Http) {

@@ -28,9 +28,9 @@
                             <td><a [routerLink]="['/orders', order.orderKey]" href="">{{order.orderNumber}}</a></td>
                             <td>{{ order.account.accountCode }}</td>
                             <td>{{ order.account.accountName }}</td>
-                            <td>{{ order.orderEntryDate }}</td>
+                            <td>{{ order.orderEntryDate | date:'shortDate' }}</td>
                             <td>{{ order.orderStatus }}</td>
-                            <td>{{ order.orderDeliverByDate }}</td>
+                            <td>{{ order.orderDeliverByDate | date:'shortDate' }}</td>
                             <td>{{ order.orderItemCount }}</td>
                             <td>{{ order.orderValueSum | currency }}</td>
                             <td>{{ order.salesRepName }}</td>

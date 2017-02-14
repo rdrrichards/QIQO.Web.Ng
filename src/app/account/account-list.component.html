@@ -16,7 +16,7 @@
                             <td>Account Code</td>
                             <td>Account Name</td>
                             <td>Account Decription</td>
-                            <td>Account DBA</td>
+                            <!--<td>Account DBA</td>-->
                             <td>Account Start</td>
                             <td>Account End</td>
                             <td>Account Address Count</td>
@@ -30,9 +30,9 @@
                             <td>{{ account.accountCode }}</td>
                             <td>{{ account.accountName }}</td>
                             <td>{{ account.accountDesc }}</td>
-                            <td>{{ account.accountDBA }}</td>
-                            <td>{{ account.accountStartDate }}</td>
-                            <td>{{ account.accountEndDate }}</td>
+                            <!--<td>{{ account.accountDBA }}</td>-->
+                            <td>{{ account.accountStartDate | date:'shortDate' }}</td>
+                            <td>{{ account.accountEndDate | date:'shortDate' }}</td>
                             <td>{{ account.addresses.length }}</td>
                             <td>{{ account.attributes.length }}</td>
                             <td>{{ account.employees.length }}</td>

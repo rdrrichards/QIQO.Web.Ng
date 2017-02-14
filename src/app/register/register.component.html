@@ -1,0 +1,28 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        Registration here:
+    </div>
+    <div>
+        <div class="form-group">
+            <label for="userName">User Name:</label>
+            <input type="text" class="form-control" id="userName" (ngModel)="account.userName">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" (ngModel)="account.password">
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirmPassword" (ngModel)="account.confirmPassword">
+        </div>
+        
+        <div>
+            <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="register()">Register</button>
+            &nbsp;
+            <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

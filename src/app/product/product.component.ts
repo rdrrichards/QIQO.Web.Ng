@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IProduct } from '../models/product';
 import { ProductService } from './product.service';
 // import { EntityService, ToastService } from '../../shared/shared';
-// import { CartService } from '../../cart/cart.service';
+import { CartService } from '../cart/cart.service';
 
 const cartKey = 'qiqocart';
 
@@ -22,7 +22,7 @@ export class ProductComponent implements OnInit {
     constructor(private _productService: ProductService,
                 private route: ActivatedRoute,
                 private _router: Router,
-                // private _cartService : CartService
+                private _cartService: CartService
                 ) {
     }
 
@@ -84,7 +84,7 @@ export class ProductComponent implements OnInit {
     }
 
     addToCart(product: IProduct, quantity = 1, price = 30){
-        // this._cartService.addCartItem(cartKey, product, quantity, price);
+        this._cartService.addCartItem(cartKey, product, quantity, price);
         console.log('Item added to cart sucessfully!');
         this._gotoCart();
     }

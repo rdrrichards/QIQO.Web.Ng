@@ -1,0 +1,47 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div>
+        <div *ngIf="!cart">Your cart is empty</div>
+        <div *ngIf="cart">
+            <div *ngIf="isEmpty()">
+                Your cart is empty!
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Product Code</td>
+                            <td>Product Name</td>
+                            <td>Price</td>
+                            <td>Quantity</td>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let cartItem of cart.cartItems">
+                            <td>{{ cart.id }}</td>
+                            <td>{{ cartItem.product.productCode }}</td>
+                            <td>{{ cartItem.product.productDesc }}</td>
+                            <td>{{ cartItem.price | currency }}</td>
+                            <td>{{ cartItem.quantity | number }}</td>
+                            <td>
+                                <div>
+                                    <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="removeItem(cartItem)">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

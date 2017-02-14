@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
+import { CONFIG } from '../shared/config';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -12,8 +13,8 @@ import { Login, IRegister } from '../models/login';
 @Injectable()
 export class AccountService {
   private _headers = new Headers();
-  private _accountsUrl = 'http://localhost:34479/api/accounts';
-  private _authUrl = 'http://localhost:34479/api/auth';
+  private _accountsUrl = CONFIG.baseUrls.accounts; // 'http://localhost:34479/api/accounts';
+  private _authUrl = CONFIG.baseUrls.auth; // 'http://localhost:34479/api/auth';
 
   constructor(private http: Http) {
     this._headers.append('Content-Type', 'application/json');

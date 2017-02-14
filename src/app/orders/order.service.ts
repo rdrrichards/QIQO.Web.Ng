@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CONFIG } from '../shared/config';
 import { IOrder } from '../models/order';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -8,9 +9,9 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class OrderService {
-    private _ordersUrl = 'http://localhost:34479/api/orders';
-    private _openOrdersUrl = 'http://localhost:34479/api/openorders';
-    private _accountsUrl = 'http://localhost:34479/api/accounts';
+    private _ordersUrl = CONFIG.baseUrls.orders; // 'http://localhost:34479/api/orders';
+    private _openOrdersUrl = CONFIG.baseUrls.openorders; // 'http://localhost:34479/api/openorders';
+    private _accountsUrl = CONFIG.baseUrls.accounts; // 'http://localhost:34479/api/accounts';
 
     constructor(private http: Http) { }
 
