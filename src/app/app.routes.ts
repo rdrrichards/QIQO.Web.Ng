@@ -5,13 +5,17 @@ import { ProductRoutes } from './product/product.routes';
 import { AccountRoutes } from './account/account.routes';
 import { OrdersRoutes } from './orders/orders.routes';
 import { CartRoutes } from './cart/cart.routes';
+import { AuthRoutes } from './auth/auth.routes';
+import { RegisterRoutes } from './register/register.routes';
 
 export const routes: Routes = [
      ...WelcomeRoutes,
      ...ProductRoutes,
      ...AccountRoutes,
      ...OrdersRoutes,
-     ...CartRoutes
+     ...CartRoutes,
+     ...AuthRoutes,
+     ...RegisterRoutes
 ];
 
 export const appRoutingProviders: any[] = [];

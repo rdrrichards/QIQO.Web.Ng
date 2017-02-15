@@ -14,7 +14,6 @@ import { Login, IRegister } from '../models/login';
 export class AccountService {
   private _headers = new Headers();
   private _accountsUrl = CONFIG.baseUrls.accounts; // 'http://localhost:34479/api/accounts';
-  private _authUrl = CONFIG.baseUrls.auth; // 'http://localhost:34479/api/auth';
 
   constructor(private http: Http) {
     this._headers.append('Content-Type', 'application/json');
@@ -53,45 +52,6 @@ export class AccountService {
   deleteAccount(id: number): Observable<any> {
     return this.http.delete(this._accountsUrl + '/' + id)
       .map(response => response.json(), { headers: this._headers })
-      .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch(this.handleError);
-  }
-
-  login(login: Login): Observable<any> {
-    return this.http.post(this._authUrl + '/authenticate', JSON.stringify(login), { headers: this._headers })
-      .map(response => response.json())
-      .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch(this.handleError);
-  }
-
-  logout(): Observable<any> {
-    return this.http.post(this._authUrl + '/logout', '', { headers: this._headers })
-      // .map(response => response.json())
-      .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch(this.handleError);
-  }
-
-  isUserAuthenticated(): boolean {
-    const _user: any = localStorage.getItem('user');
-    if (_user != null) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  getLoggedInUser(): Login {
-    let _user: Login;
-    if (this.isUserAuthenticated()) {
-      const _userData = JSON.parse(localStorage.getItem('user'));
-      _user = { userName: _userData.userName, password: _userData.password, rememberMe: _userData.rememberMe };
-    }
-    return _user;
-  }
-
-  register(register: IRegister): Observable<any> {
-    return this.http.post(this._authUrl + '/register', JSON.stringify(register), { headers: this._headers })
-      .map(response => response.json().data)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }

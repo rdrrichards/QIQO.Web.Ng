@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +10,31 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   applicationName = 'The App Works!';
-
-  getUserName()
-  {
-    return 'Richard Richards';
+  constructor(public authService: AuthService,
+    private router: Router) {
   }
 
-  isUserLoggedIn(){
-    return true;
+  isUserLoggedIn(): boolean {
+    return this.authService.isUserAuthenticated();
   }
 
-  logout(){}
+  getUserName(): string {
+    if (this.isUserLoggedIn()) {
+      const _user = this.authService.getLoggedInUser();
+      return _user.userName;
+    } else {
+      return '';
+    }
+  }
+
+  logout(): void {
+    this.authService.logout()
+      .subscribe(res => {
+        localStorage.removeItem('user');
+      },
+      error => console.error('Error: ' + error),
+      () => { });
+  }
 }
 
 
