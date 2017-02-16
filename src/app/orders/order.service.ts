@@ -26,14 +26,14 @@ export class OrderService {
         console.log(this._accountsUrl + '/' + id + '/orders');
         return this.http.get(this._accountsUrl + '/' + id + '/orders')
             .map((response: Response) => <IOrder[]>response.json())
-            .do(data => console.log('All: ' + JSON.stringify(data)))
+            // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     getAccountOrder(id: number, oid: number): Observable<IOrder> {
         return this.http.get(this._accountsUrl + '/' + id + '/orders/' + oid)
             .map((response: Response) => <IOrder>response.json())
-            .do(data => console.log('All: ' + JSON.stringify(data)))
+            // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
