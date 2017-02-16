@@ -47,7 +47,7 @@ export class AuthService {
     let _user: Login;
     if (this.isUserAuthenticated()) {
       const _userData = JSON.parse(localStorage.getItem('user'));
-      _user = { userName: _userData.userName, password: _userData.password, rememberMe: _userData.rememberMe };
+      _user = { userName: _userData.userName, password: '', rememberMe: _userData.rememberMe };
     }
     return _user;
   }

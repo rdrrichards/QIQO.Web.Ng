@@ -41,21 +41,21 @@ export class AppComponent {
 /*
 
 Account Module
-  Account List
-  Account Detail
-  Account Orders List
-  Account Order Details
-  Account Service
-  Account Routes
+  Account List (done)
+  Account Detail (done)
+  Account Orders List (done)
+  Account Order Details (done)
+  Account Service (done)
+  Account Routes (done)
 
 Cart Module
-  Cart Details
-  Cart Service
-  Cart Routes
+  Cart Details (done)
+  Cart Service (done)
+  Cart Routes (done)
 
 Home/Welcome Module
-  Home Component
-  Home Routes
+  Home Component (done)
+  Home Routes (done)
 
 Admin Module
   Account List
@@ -67,21 +67,21 @@ Admin Module
   Admin Routes
 
 Product Module
-  Product List
+  Product List (done)
   Product Details
-  Product Service
-  Product Routes
+  Product Service (done)
+  Product Routes (done)
 
 Shared Module
 Core Module
 
 Models
-  Account
-  Order
-  Product
-  Address
-  Cart
-  Entity Attribute
-  Login
+  Account (done)
+  Order (done)
+  Product (done)
+  Address (done)
+  Cart (done)
+  Entity Attribute (done)
+  Login (done)
 
 */
