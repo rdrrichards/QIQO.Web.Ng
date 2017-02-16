@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IProduct } from '../models/product';
 import { ProductService } from './product.service';
-// import { EntityService, ToastService } from '../../shared/shared';
+import { EntityService } from '../core/entity.service';
 import { CartService } from '../cart/cart.service';
 
 const cartKey = 'qiqocart';
@@ -20,10 +20,11 @@ export class ProductComponent implements OnInit {
     private id: any;
 
     constructor(private _productService: ProductService,
-                private route: ActivatedRoute,
-                private _router: Router,
-                private _cartService: CartService
-                ) {
+        private route: ActivatedRoute,
+        private _router: Router,
+        private _cartService: CartService,
+        private _entityService: EntityService
+    ) {
     }
 
     cancel(showToast = true) {
@@ -34,39 +35,39 @@ export class ProductComponent implements OnInit {
         this._gotoProducts();
     }
 
-    ngOnInit(){
+    ngOnInit() {
         console.log('Trying to get param and call getProduct');
         this.sub = this.route.params.subscribe(params => {
             const id = +params['id']; // (+) converts string 'id' to a number
             this.pageTitle += `: ${id}`;
             console.log('Account id from the params: ' + id);
             this._productService.getProduct(id)
-            .subscribe(
-                product => this.product = product,
+                .subscribe(
+                product => this._setEditProduct(product),
                 error => this.errMessage = <any>error
-            );
+                );
         });
     }
 
-    addProduct(){
+    addProduct() {
         console.log('addProduct in the product.component');
         this._productService.addProduct(this.product)
             .subscribe(
-                product => this.product = product,
-                error => this.errMessage = <any>error
-        );
+            product => this.product = product,
+            error => this.errMessage = <any>error
+            );
     }
 
     updateProduct() {
-        const product = this.product; // = this._entityService.merge(this.product, this.editProduct);
+        const product = this.product = this._entityService.merge(this.product, this.editProduct);
         console.log('updateProduct in the product.component');
         console.log(product);
         this._productService.updateProduct(product)
-        .subscribe(prod => {
+            .subscribe(prod => {
                 this._setEditProduct(prod);
                 // this._toastService.activate(`Successfully updated ${prod.accountName}`);
                 this._gotoProducts();
-        });
+            });
     }
 
     isAddMode() {
@@ -77,13 +78,13 @@ export class ProductComponent implements OnInit {
         });
     }
 
-    deleteProduct(){
+    deleteProduct() {
         console.log('deleteProduct in the product.component');
         console.log(this.product);
         this._productService.deleteProduct(this.product.productKey);
     }
 
-    addToCart(product: IProduct, quantity = 1, price = 30){
+    addToCart(product: IProduct, quantity = 1, price = 30) {
         this._cartService.addCartItem(cartKey, product, quantity, price);
         console.log('Item added to cart sucessfully!');
         this._gotoCart();
@@ -94,13 +95,13 @@ export class ProductComponent implements OnInit {
     }
 
     private _isDirty() {
-        return false; // this._entityService.propertiesDiffer(this.product, this.editProduct);
+        return this._entityService.propertiesDiffer(this.product, this.editProduct);
     }
 
     private _setEditProduct(product: IProduct) {
         if (product) {
             this.product = product;
-            this.editProduct = this.product; // this._entityService.clone(this.product);
+            this.editProduct = this._entityService.clone(this.product);
         } else {
             this._gotoProducts();
         }

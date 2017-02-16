@@ -9,6 +9,7 @@ import { OrdersModule } from './orders/orders.module';
 import { CartModule } from './cart/cart.module';
 import { AuthModule } from './auth/auth.module';
 import { RegisterModule } from './register/register.module';
+import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routes';
@@ -34,6 +35,7 @@ import { AuthService } from './auth/auth.service';
     CartModule,
     AuthModule,
     RegisterModule,
+    CoreModule,
     routing
   ],
   providers: [ appRoutingProviders, ProductService, AccountService, OrderService, CartService, AuthService ],

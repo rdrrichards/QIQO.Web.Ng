@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from './account.service';
 import { IAccount } from '../models/account';
+import { EntityService } from '../core/entity.service';
 
 @Component({
   selector: 'app-account',
@@ -18,7 +19,8 @@ export class AccountComponent implements OnInit {
 
   constructor(private _accountService: AccountService,
     private route: ActivatedRoute,
-    private _router: Router) {
+    private _router: Router,
+    private _entityService: EntityService) {
   }
 
   cancel(showToast = true) {
@@ -55,7 +57,7 @@ export class AccountComponent implements OnInit {
   }
 
   updateAccount() {
-    const account = this.account; // = this._entityService.merge(this.account, this.editAccount);
+    const account = this.account = this._entityService.merge(this.account, this.editAccount);
     console.log('updateAccount in the account.component');
     console.log(account);
     this._accountService.updateAccount(account)
@@ -89,13 +91,13 @@ export class AccountComponent implements OnInit {
   }
 
   private _isDirty() {
-    return false; // this._entityService.propertiesDiffer(this.account, this.editAccount);
+    return this._entityService.propertiesDiffer(this.account, this.editAccount);
   }
 
   private _setEditAccount(account: IAccount) {
     if (account) {
       this.account = account;
-        this.editAccount = account; // this._entityService.clone(this.account);
+      this.editAccount = this._entityService.clone(this.account);
     } else {
       this._gotoAccounts();
     }
