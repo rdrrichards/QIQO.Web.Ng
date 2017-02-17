@@ -3,13 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from './account.service';
 import { IAccount } from '../models/account';
 import { EntityService } from '../core/entity.service';
+import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, CanComponentDeactivate {
   public pageTitle = 'Account Detail';
   @Input() public account: IAccount;
   public editAccount: IAccount = <IAccount>{};
@@ -21,6 +22,10 @@ export class AccountComponent implements OnInit {
     private route: ActivatedRoute,
     private _router: Router,
     private _entityService: EntityService) {
+  }
+
+  canDeactivate() {
+    return !this.account || !this._isDirty();
   }
 
   cancel(showToast = true) {

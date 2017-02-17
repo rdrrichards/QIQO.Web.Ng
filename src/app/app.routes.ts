@@ -7,6 +7,7 @@ import { OrdersRoutes } from './orders/orders.routes';
 import { CartRoutes } from './cart/cart.routes';
 import { AuthRoutes } from './auth/auth.routes';
 import { RegisterRoutes } from './register/register.routes';
+import { CanDeactivateGuard } from './core/can-deactivate-guard.service';
 
 export const routes: Routes = [
      ...WelcomeRoutes,
@@ -18,6 +19,6 @@ export const routes: Routes = [
      ...RegisterRoutes
 ];
 
-export const appRoutingProviders: any[] = [];
+export const appRoutingProviders: any[] = [ CanDeactivateGuard ];
 
 export const routing = RouterModule.forRoot(routes);

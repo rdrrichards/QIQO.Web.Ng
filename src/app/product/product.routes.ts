@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { ProductHomeComponent } from './product-home.component';
 import { ProductComponent } from './product.component';
 import { ProductListComponent } from './product-list.component';
+import { CanDeactivateGuard } from '../core/can-deactivate-guard.service';
 
 export const ProductRoutes: Routes = [
     {
@@ -15,7 +16,7 @@ export const ProductRoutes: Routes = [
             },
             {
                 path : ':id',
-                component : ProductComponent
+                component : ProductComponent, canDeactivate: [CanDeactivateGuard]
             }
         ]
  }

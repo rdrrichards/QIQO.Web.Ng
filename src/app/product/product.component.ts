@@ -4,6 +4,7 @@ import { IProduct } from '../models/product';
 import { ProductService } from './product.service';
 import { EntityService } from '../core/entity.service';
 import { CartService } from '../cart/cart.service';
+import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
 
 const cartKey = 'qiqocart';
 
@@ -11,7 +12,7 @@ const cartKey = 'qiqocart';
     selector: 'app-product',
     templateUrl: './product.component.html'
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, CanComponentDeactivate {
     public pageTitle = 'Product Details';
     public product: IProduct;
     public editProduct: IProduct = <IProduct>{};
@@ -25,6 +26,10 @@ export class ProductComponent implements OnInit {
         private _cartService: CartService,
         private _entityService: EntityService
     ) {
+    }
+
+    canDeactivate() {
+        return !this.product || !this._isDirty();
     }
 
     cancel(showToast = true) {

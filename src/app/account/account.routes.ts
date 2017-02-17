@@ -6,6 +6,7 @@ import { AccountListComponent } from './account-list.component';
 import { AccountHomeComponent } from './account-home.component';
 import { AccountOrdersComponent } from './account.orders.component';
 import { AccountOrderComponent } from './account.order.component';
+import { CanDeactivateGuard } from '../core/can-deactivate-guard.service';
 
 export const AccountRoutes: Routes = [
     {
@@ -17,7 +18,7 @@ export const AccountRoutes: Routes = [
             },
             {
                 path : ':id',
-                component : AccountComponent
+                component : AccountComponent, canDeactivate: [CanDeactivateGuard]
             },
             {
                 path : ':id/orders',
