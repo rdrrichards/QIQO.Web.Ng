@@ -7,13 +7,16 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
+import { ExceptionService } from '../core/exception.service';
+
 @Injectable()
 export class OrderService {
     private _ordersUrl = CONFIG.baseUrls.orders; // 'http://localhost:34479/api/orders';
     private _openOrdersUrl = CONFIG.baseUrls.openorders; // 'http://localhost:34479/api/openorders';
     private _accountsUrl = CONFIG.baseUrls.accounts; // 'http://localhost:34479/api/accounts';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+        private exceptionService: ExceptionService) { }
 
     getOrders(): Observable<IOrder[]> {
         return this.http.get(this._openOrdersUrl)
@@ -67,6 +70,7 @@ export class OrderService {
 
     private handleError(error: Response) {
         console.error(error);
+        this.exceptionService.catchBadResponse(error);
         return Observable.throw(error.status || 'Unknown error, likely an auth error');
     }
 }

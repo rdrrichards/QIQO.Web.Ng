@@ -9,13 +9,15 @@ import 'rxjs/add/operator/catch';
 
 import { IAccount } from '../models/account';
 import { Login, IRegister } from '../models/login';
+import { ExceptionService } from '../core/exception.service';
 
 @Injectable()
 export class AccountService {
   private _headers = new Headers();
   private _accountsUrl = CONFIG.baseUrls.accounts; // 'http://localhost:34479/api/accounts';
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+    private exceptionService: ExceptionService) {
     this._headers.append('Content-Type', 'application/json');
     this._headers.append('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
   }
@@ -57,7 +59,7 @@ export class AccountService {
   }
 
   private handleError(error: Response) {
-    // console.log('WTF');
+    this.exceptionService.catchBadResponse(error);
     console.log(error);
     return Observable.throw(error.status || 'Unknown error, likely an auth error');
   }
