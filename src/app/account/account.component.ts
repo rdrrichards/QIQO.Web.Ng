@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from './account.service';
 import { IAccount } from '../models/account';
 import { EntityService } from '../core/entity.service';
+import { ModalService } from '../core/modal/modal.service';
+import { ToastService } from '../core/toast/toast.service';
 import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
 
 @Component({
@@ -20,16 +22,18 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
 
   constructor(private _accountService: AccountService,
     private route: ActivatedRoute,
-    private _router: Router,
-    private _entityService: EntityService) {
+    private router: Router,
+    private entityService: EntityService,
+    private modalService: ModalService,
+    private toastService: ToastService) {
   }
 
   canDeactivate() {
-    return !this.account || !this._isDirty();
+    return !this.account || !this._isDirty() || this.modalService.activate('HA!!');
   }
 
   cancel(showToast = true) {
-    // this.editAccount = this._entityService.clone(this.account);
+    // this.editAccount = this.entityService.clone(this.account);
     if (showToast) {
       // this._toastService.activate(`Cancelled changes to ${this.account.accountName}`);
     }
@@ -62,7 +66,7 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
   }
 
   updateAccount() {
-    const account = this.account = this._entityService.merge(this.account, this.editAccount);
+    const account = this.account = this.entityService.merge(this.account, this.editAccount);
     console.log('updateAccount in the account.component');
     console.log(account);
     this._accountService.updateAccount(account)
@@ -85,24 +89,24 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
   }
 
   onBack(): void {
-    this._router.navigate(['/accounts']);
+    this.router.navigate(['/accounts']);
   }
 
   getAccountOpenOrders(): void {
     console.log('Account id from the params: ' + this._id);
     console.log('Attempting to route to account orders...');
     const link = ['/accounts', this._id, 'orders'];
-    this._router.navigate(link);
+    this.router.navigate(link);
   }
 
   private _isDirty() {
-    return this._entityService.propertiesDiffer(this.account, this.editAccount);
+    return this.entityService.propertiesDiffer(this.account, this.editAccount);
   }
 
   private _setEditAccount(account: IAccount) {
     if (account) {
       this.account = account;
-      this.editAccount = this._entityService.clone(this.account);
+      this.editAccount = this.entityService.clone(this.account);
     } else {
       this._gotoAccounts();
     }
@@ -111,7 +115,7 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
   private _gotoAccounts() {
     const id = this.account ? this.account.accountKey : null;
     const route = ['/accounts'];
-    this._router.navigate(route);
+    this.router.navigate(route);
   }
 
 }

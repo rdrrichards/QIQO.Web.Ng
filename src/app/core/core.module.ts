@@ -6,14 +6,16 @@ import { RouterModule } from '@angular/router';
 import { EntityService } from './entity.service';
 import { ExceptionService } from './exception.service';
 import { ToastModule } from './toast/toast.module';
+import { ModalModule } from './modal/modal.module';
 
 @NgModule({
   imports: [
     CommonModule, // we use ngFor
     RouterModule, // because we use <router-outlet> and routerLink
-    ToastModule
+    ToastModule,
+    ModalModule
   ],
-  exports: [ ToastModule ],
+  exports: [ ToastModule, ModalModule ],
   declarations: [],
   providers: [ EntityService, ExceptionService ]
 })
