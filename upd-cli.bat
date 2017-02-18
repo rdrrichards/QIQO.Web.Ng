@@ -1,10 +1,10 @@
 call npm uninstall -g @angular/cli
 call npm cache clean
-call npm install -g @angular/cli@1.0.0-beta.31
+call npm install -g @angular/cli@latest
 
 rmdir node_modules /s /q
 rmdir dist /s /q
 rmdir tmp /s /q
 
-call npm install --save-dev @angular/cli@1.0.0-beta.31
+call npm install --save-dev @angular/cli@latest
 call npm install
