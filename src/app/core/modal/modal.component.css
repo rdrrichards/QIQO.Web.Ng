@@ -1,4 +1,4 @@
-.dialog-container,
+.app-dialog-container,
 .loading-container {
     position: absolute;
     top: 0;
@@ -14,7 +14,7 @@
     transition: opacity 400ms ease-in;
 }
 
-.dialog-container > div {
+.app-dialog-container > div {
     position: relative;
     width: 90%;
     max-width: 500px;
@@ -42,6 +42,6 @@
     height: 100%;
 }
 
-.dialog-container .dialog-button-bar button {
+.app-dialog-container .dialog-button-bar button {
   margin: 0 0 0 1em;
 }

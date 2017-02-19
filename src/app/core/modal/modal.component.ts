@@ -31,6 +31,7 @@ export class ModalComponent implements OnInit {
     }
 
     activate(message = this.defaults.message, title = this.defaults.title) {
+        // console.log(`****Activiting modal: ${message}`);
         this.title = title;
         this.message = message;
         this.okText = this.defaults.okText;

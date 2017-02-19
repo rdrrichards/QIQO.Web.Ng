@@ -29,11 +29,14 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate() {
-    return !this.account || !this._isDirty() || this.modalService.activate('HA!!');
+    // console.log(`**canDeactivate ${this.account.accountName}`);
+    // console.log(`**this.account ${this.account}`);
+    // console.log(`**this._isDirty ${this._isDirty()}`);
+    return !this.account || !this._isDirty() || this.modalService.activate();
   }
 
   cancel(showToast = true) {
-    this.editAccount = this.entityService.clone(this.account);
+    // this.editAccount = this.entityService.clone(this.account);
     if (showToast) {
       this.toastService.activate(`Cancelled changes to ${this.account.accountName}`);
     }
