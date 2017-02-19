@@ -33,14 +33,15 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
   }
 
   cancel(showToast = true) {
-    // this.editAccount = this.entityService.clone(this.account);
+    this.editAccount = this.entityService.clone(this.account);
     if (showToast) {
-      // this._toastService.activate(`Cancelled changes to ${this.account.accountName}`);
+      this.toastService.activate(`Cancelled changes to ${this.account.accountName}`);
     }
     this._gotoAccounts();
   }
 
   ngOnInit() {
+    // this.toastService.activate(`Loading an account...`);
     this.sub = this.route.params.subscribe(params => {
       const id = +params['id']; // (+) converts string 'id' to a number
       this._id = id;
