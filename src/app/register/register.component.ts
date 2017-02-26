@@ -4,28 +4,28 @@ import { Register } from '../models/login';
 import { Router } from '@angular/router';
 
 @Component({
-    templateUrl: './register.component.html'
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent {
-    public pageTitle = 'Register with The Cheesecake Fool';
-    public account: Register = new Register('', '', '');
-    public errMessage: string;
+  public pageTitle = 'Register with The Cheesecake Fool';
+  public account: Register = new Register('', '', '');
+  public errMessage: string;
 
-    constructor(private _authService: AuthService,
-        private _router: Router) {
+  constructor(private _authService: AuthService,
+    private _router: Router) {
 
-    }
+  }
 
-    register(register: Register) {
-        // console.log(JSON.stringify(this.account));
-        this._authService.register(this.account)
-            .subscribe(acct => {
-                localStorage.setItem('user', JSON.stringify(this.register));
-                this._router.navigate(['/']);
-            });
-    }
-
-    cancel() {
+  register(register: Register) {
+    // console.log(JSON.stringify(this.account));
+    this._authService.register(this.account)
+      .subscribe(acct => {
+        localStorage.setItem('user', JSON.stringify(this.register));
         this._router.navigate(['/']);
-    }
+      });
+  }
+
+  cancel() {
+    this._router.navigate(['/']);
+  }
 }
