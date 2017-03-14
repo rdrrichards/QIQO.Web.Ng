@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 // import { IAccount } from '../models/account';
 
 @Component({
-  selector: 'app-account-home',
+  // selector: 'app-account-home',
   template: '<router-outlet></router-outlet>'
 })
 export class AccountHomeComponent{}
