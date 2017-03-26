@@ -12,12 +12,9 @@ export class RegisterComponent {
   public errMessage: string;
 
   constructor(private _authService: AuthService,
-    private _router: Router) {
+    private _router: Router) { }
 
-  }
-
-  register(register: Register) {
-    // console.log(JSON.stringify(this.account));
+  register() {
     this._authService.register(this.account)
       .subscribe(acct => {
         localStorage.setItem('user', JSON.stringify(this.register));
