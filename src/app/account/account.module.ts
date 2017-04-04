@@ -13,9 +13,9 @@ import { AccountOrderComponent } from './account.order.component';
   imports: [
     CommonModule, FormsModule, RouterModule
   ],
-  exports: [ AccountComponent, AccountHomeComponent, AccountListComponent, 
+  exports: [ AccountComponent, AccountHomeComponent, AccountListComponent,
     AccountOrdersComponent, AccountOrderComponent ],
-  declarations: [ AccountComponent, AccountHomeComponent, AccountListComponent, 
+  declarations: [ AccountComponent, AccountHomeComponent, AccountListComponent,
     AccountOrdersComponent, AccountOrderComponent ]
 })
 export class AccountModule { }
