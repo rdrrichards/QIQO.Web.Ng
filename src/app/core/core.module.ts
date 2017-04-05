@@ -8,6 +8,8 @@ import { ExceptionService } from './exception.service';
 import { ToastModule } from './toast/toast.module';
 import { ModalModule } from './modal/modal.module';
 
+import { CanActivateGuard } from './can-activate-guard.service';
+
 @NgModule({
   imports: [
     CommonModule, // we use ngFor
@@ -17,7 +19,7 @@ import { ModalModule } from './modal/modal.module';
   ],
   exports: [ ToastModule, ModalModule ],
   declarations: [],
-  providers: [ EntityService, ExceptionService ]
+  providers: [ EntityService, ExceptionService, CanActivateGuard ]
 })
 
 export class CoreModule { }
