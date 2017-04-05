@@ -6,6 +6,6 @@ export class QIQOWebA4Page {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.id('page-title')).getText();
   }
 }
