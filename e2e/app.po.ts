@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class QIQO.Web.A4Page {
+export class QIQOWebA4Page {
   navigateTo() {
     return browser.get('/');
   }

@@ -1,10 +1,10 @@
-import { QIQO.Web.A4Page } from './app.po';
+import { QIQOWebA4Page } from './app.po';
 
 describe('qiqo.web.a4 App', function() {
-  let page: QIQO.Web.A4Page;
+  let page: QIQOWebA4Page;
 
   beforeEach(() => {
-    page = new QIQO.Web.A4Page();
+    page = new QIQOWebA4Page();
   });
 
   it('should display message saying app works', () => {
