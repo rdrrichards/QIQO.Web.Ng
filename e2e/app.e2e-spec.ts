@@ -7,7 +7,7 @@ describe('qiqo.web.a4 App', function() {
     page = new QIQOWebA4Page();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Welcome to the Cheesecake Fool!', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Welcome to the Cheesecake Fool!');
   });
