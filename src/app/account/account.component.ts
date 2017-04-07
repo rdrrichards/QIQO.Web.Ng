@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from './account.service';
 import { IAccount } from '../models/account';
@@ -14,7 +14,7 @@ import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
 })
 export class AccountComponent implements OnInit, CanComponentDeactivate {
   public pageTitle = 'Account Detail';
-  @Input() public account: IAccount;
+  public account: IAccount;
   public editAccount: IAccount = <IAccount>{};
   public errMessage: string;
   private _id: number;

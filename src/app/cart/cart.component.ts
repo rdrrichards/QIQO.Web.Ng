@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from './cart.service';
 import { ProductService } from '../product/product.service';
@@ -15,7 +15,7 @@ const cartKey = 'qiqocart';
 })
 export class CartComponent implements OnInit {
     public pageTitle = 'Your Shopping Cart';
-    @Input() public cart: Cart;
+    public cart: Cart;
 
     constructor(private _productService: ProductService,
         private _cartService: CartService,
