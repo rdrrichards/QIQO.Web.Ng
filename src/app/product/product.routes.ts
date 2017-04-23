@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 
 import { ProductHomeComponent } from './product-home.component';

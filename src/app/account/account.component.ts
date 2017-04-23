@@ -117,7 +117,7 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
   }
 
   private _gotoAccounts() {
-    const id = this.account ? this.account.accountKey : null;
+    // const id = this.account ? this.account.accountKey : null;
     const route = ['/accounts'];
     this.router.navigate(route);
   }

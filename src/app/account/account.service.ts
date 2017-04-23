@@ -8,7 +8,6 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
 import { IAccount } from '../models/account';
-import { Login, IRegister } from '../models/login';
 import { ExceptionService } from '../core/exception.service';
 
 @Injectable()

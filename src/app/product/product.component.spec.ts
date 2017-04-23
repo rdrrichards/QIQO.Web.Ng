@@ -20,23 +20,23 @@ describe('ProductComponent', () => {
   let entityService: EntityService;
   let cartService: CartService;
 
-  let productServiceStub: {};
-  let routeStub: {};
-  let routerStub: {};
-  let entityServiceStub: {};
-  let cartServiceStub: {};
+  const productServiceStub = {};
+  const routeStub = {};
+  const routerStub = {};
+  const entityServiceStub = {};
+  const cartServiceStub = {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule ],
-      declarations: [ ProductComponent ],
+      imports: [FormsModule],
+      declarations: [ProductComponent],
       providers: [{ provide: ProductService, useValue: productServiceStub },
-        { provide: ActivatedRoute, useValue: routeStub },
-        { provide: Router, useValue: routerStub },
-        { provide: EntityService, useValue: entityServiceStub },
-        { provide: CartService, useValue: cartServiceStub },]
+      { provide: ActivatedRoute, useValue: routeStub },
+      { provide: Router, useValue: routerStub },
+      { provide: EntityService, useValue: entityServiceStub },
+      { provide: CartService, useValue: cartServiceStub } ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

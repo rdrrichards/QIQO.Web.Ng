@@ -72,8 +72,8 @@ export class CartComponent implements OnInit {
         }
     }
 
-    private _gotoCart() {
-        const route = ['/cart'];
-        this._router.navigate(route);
-    }
+    // private _gotoCart() {
+    //     const route = ['/cart'];
+    //     this._router.navigate(route);
+    // }
 }

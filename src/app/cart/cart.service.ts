@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
-import { ICart, Cart } from '../models/cart';
-import { ICartItem, CartItem } from '../models/cart-item';
+import { ICart } from '../models/cart';
+import { CartItem } from '../models/cart-item';
 import { IProduct } from '../models/product';
 
 @Injectable()

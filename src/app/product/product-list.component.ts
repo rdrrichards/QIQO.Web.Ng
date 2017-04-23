@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ProductComponent } from '../product/product.component';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from './product.service';
 import { IProduct } from '../models/product';
 import { IProductPage } from '../models/product-page';
@@ -44,9 +43,9 @@ export class ProductListComponent implements OnInit {
     }
 
     next(page: number, psize: number, orderBy: string, category: string) {
-        this._productService.getProductPage(page, psize | this.perPageCnt, this.orderBy || orderBy, this.selectedCategory || category)
+        this._productService.getProductPage(page, psize || this.perPageCnt, this.orderBy || orderBy, this.selectedCategory || category)
             .subscribe(
-            page => this.page = page,
+            pg => this.page = pg,
             error => this.errMessage = <any>error
             );
     }

@@ -17,16 +17,16 @@ export const WelcomeRoutes: Routes = [
     path: 'welcome',
     component: WelcomeComponent
   },
-//   { 
-//     path: 'register', 
-//     component: RegisterComponent 
-//   },
-//   { 
-//     path: 'login', 
-//     component: LoginComponent 
-//   },
-//   { 
-//     path: 'cart', 
-//     component: CartComponent 
-//   }
+  //   {
+  //     path: 'register',
+  //     component: RegisterComponent
+  //   },
+  //   {
+  //     path: 'login',
+  //     component: LoginComponent
+  //   },
+  //   {
+  //     path: 'cart',
+  //     component: CartComponent
+  //   }
 ];

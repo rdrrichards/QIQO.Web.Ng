@@ -1,4 +1,3 @@
-import { ExceptionService } from './../core/exception.service';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -26,24 +25,24 @@ describe('AccountComponent', () => {
   let modalService: ModalService;
   let toastService: ToastService;
 
-  let accountServiceStub: {};
-  let routeStub: {};
-  let routerStub: {};
-  let entityServiceStub: {};
-  let modalServiceStub: {};
-  let toastServiceStub: {};
+  const accountServiceStub = {};
+  const routeStub = {};
+  const routerStub = {};
+  const entityServiceStub = {};
+  const modalServiceStub = {};
+  const toastServiceStub = {};
 
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      imports: [ FormsModule ],
+      imports: [FormsModule],
       declarations: [AccountComponent],
       providers: [{ provide: AccountService, useValue: accountServiceStub },
-        { provide: ActivatedRoute, useValue: routeStub },
-        { provide: Router, useValue: routerStub },
-        { provide: EntityService, useValue: entityServiceStub },
-        { provide: ModalService, useValue: modalServiceStub },
-        { provide: ToastService, useValue: toastServiceStub }]
+      { provide: ActivatedRoute, useValue: routeStub },
+      { provide: Router, useValue: routerStub },
+      { provide: EntityService, useValue: entityServiceStub },
+      { provide: ModalService, useValue: modalServiceStub },
+      { provide: ToastService, useValue: toastServiceStub }]
     })
       .compileComponents();
   }));

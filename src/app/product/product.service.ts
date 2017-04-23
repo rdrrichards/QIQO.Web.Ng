@@ -71,13 +71,13 @@ export class ProductService {
       .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
-    if (res.status < 200 || res.status >= 300) {
-      throw new Error('Bad response status: ' + res.status);
-    }
-    const body = res.json();
-    return body.data || {};
-  }
+  // private extractData(res: Response) {
+  //   if (res.status < 200 || res.status >= 300) {
+  //     throw new Error('Bad response status: ' + res.status);
+  //   }
+  //   const body = res.json();
+  //   return body.data || {};
+  // }
 
   private handleError(error: Response) {
     this.exceptionService.catchBadResponse(error);

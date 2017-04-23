@@ -13,22 +13,22 @@ export class AccountListComponent implements OnInit {
   public errMessage: string;
 
   constructor(private _accountService: AccountService,
-                private _router: Router) {
+    private _router: Router) {
   }
 
-  ngOnInit(){
-        // componentHandler.upgradeDom();
-        console.log('Calling getAccounts');
-        this._accountService.getAccounts()
-        .subscribe(
-            accounts => this.accounts = accounts,
-            error => {
-                console.log('Error getAccounts');
-                this.errMessage = <any>error;
-                if (this.errMessage){
-                    this._router.navigate(['../login']);
-                }
-            }
-        );
-    }
+  ngOnInit() {
+    // componentHandler.upgradeDom();
+    console.log('Calling getAccounts');
+    this._accountService.getAccounts()
+      .subscribe(
+      accounts => this.accounts = accounts,
+      error => {
+        console.log('Error getAccounts');
+        this.errMessage = <any>error;
+        if (this.errMessage) {
+          this._router.navigate(['../login']);
+        }
+      }
+      );
+  }
 }

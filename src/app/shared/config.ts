@@ -9,4 +9,4 @@ export let CONFIG = {
     carts: `${baseHost}carts`,
     auth: `${baseHost}auth`
   }
-}
+};
