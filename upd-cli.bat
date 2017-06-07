@@ -1,5 +1,5 @@
 call npm uninstall -g @angular/cli
-call npm cache clean
+call npm cache clean -- force
 call npm install -g @angular/cli@latest
 
 rmdir node_modules /s /q
