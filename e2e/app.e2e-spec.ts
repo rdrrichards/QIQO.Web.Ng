@@ -9,6 +9,6 @@ describe('qiqo.web.a4 App', function() {
 
   it('should display message saying Welcome to the Cheesecake Fool!', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to the Cheesecake Fool!');
+    expect<any>(page.getParagraphText()).toEqual('Welcome to the Cheesecake Fool!');
   });
 });
