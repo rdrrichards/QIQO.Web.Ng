@@ -33,8 +33,11 @@ export class ProductService {
     const url = this._productsUrl + '?page=' + page + '&psize=' + psize + '&category=' + category + '&orderBy=' + orderBy;
     console.log(url);
     return this.http.get(url)
-      .map(response => <IProductPage>response.json())
-      // .do(data => console.log('All: ' +  JSON.stringify(data)))
+      .map(response => {
+        // console.log(response.headers.get('content-type'));
+        return <IProductPage>response.json();
+      })
+      // .do(response => console.log('Headers: ' +  response.headers()))
       .catch(this.handleError);
   }
 
