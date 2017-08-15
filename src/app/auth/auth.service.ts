@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CONFIG } from '../shared/config';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,19 +12,17 @@ import { ExceptionService } from '../core/exception.service';
 
 @Injectable()
 export class AuthService {
-  private _headers = new Headers();
+  private _headers = new HttpHeaders().set('Content-Type', 'application/json');
   private _authUrl = CONFIG.baseUrls.auth; // 'http://localhost:34479/api/auth';
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
     private exceptionService: ExceptionService) {
-    this._headers.append('Content-Type', 'application/json');
-    this._headers.append('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
   }
 
   login(login: Login): Observable<any> {
     return this.http.post(this._authUrl + '/authenticate', JSON.stringify(login), { headers: this._headers })
-      .map(response => response.json())
-      .do(data => console.log('All: ' + JSON.stringify(data)))
+      .map(response => response)
+      .do(data => console.log('All: ' + data))
       .catch(this.handleError);
   }
 
@@ -55,7 +53,7 @@ export class AuthService {
 
   register(register: IRegister): Observable<any> {
     return this.http.post(this._authUrl + '/register', JSON.stringify(register), { headers: this._headers })
-      .map(response => response.json().data)
+      .map(response => response)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
