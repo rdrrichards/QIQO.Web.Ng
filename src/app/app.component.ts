@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 
 import { AuthService } from './auth/auth.service';
 
@@ -10,8 +10,13 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
   applicationName = 'The App Works!';
+  loading = true;
+
   constructor(public authService: AuthService,
     private router: Router) {
+      router.events.subscribe((routerEvent: Event) => {
+        this.checkRouterEvent(routerEvent);
+    });
   }
 
   isUserLoggedIn(): boolean {
@@ -35,6 +40,18 @@ export class AppComponent {
       error => console.error('Error: ' + error),
       () => { });
   }
+
+  checkRouterEvent(routerEvent: Event): void {
+    if (routerEvent instanceof NavigationStart) {
+        this.loading = true;
+    }
+
+    if (routerEvent instanceof NavigationEnd ||
+        routerEvent instanceof NavigationCancel ||
+        routerEvent instanceof NavigationError) {
+        this.loading = false;
+    }
+}
 }
 
 
