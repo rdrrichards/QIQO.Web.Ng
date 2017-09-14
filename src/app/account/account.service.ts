@@ -17,11 +17,13 @@ export class AccountService {
 
   constructor(private httpClient: HttpClient,
     private exceptionService: ExceptionService) {
-    // this._headers.append('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
   }
 
   getAccounts(): Observable<IAccount[]> {
-    return this.httpClient.get<IAccount[]>(this._accountsUrl)
+    this._headers.append('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
+    // this._headers.append('Access-Control-Allow-Origin', '*');
+    console.log(JSON.stringify(this._headers));
+    return this.httpClient.get<IAccount[]>(this._accountsUrl, { headers: this._headers })
       .map(response => <IAccount[]>response)
       // .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);

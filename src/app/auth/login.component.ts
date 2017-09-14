@@ -19,6 +19,10 @@ export class LoginComponent {
     this._authService.login(this.login)
       .subscribe(login => {
         this._router.navigate(['/']);
+        // localStorage.setItem('user', login);
+        console.log(login);
+        console.log(JSON.stringify(login));
+        console.log(document.cookie);
         localStorage.setItem('user', JSON.stringify(this.login));
       });
   }

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { ProductModule } from './product/product.module';
 import { AccountModule } from './account/account.module';
 import { WelcomeModule } from './home/welcome.module';
@@ -27,6 +28,7 @@ import { AuthService } from './auth/auth.service';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     HttpClientModule,
     AccountModule,
     ProductModule,
