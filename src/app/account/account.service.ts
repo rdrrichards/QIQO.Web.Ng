@@ -20,10 +20,10 @@ export class AccountService {
   }
 
   getAccounts(): Observable<IAccount[]> {
-    this._headers.append('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
+    // this._headers.append('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
     // this._headers.append('Access-Control-Allow-Origin', '*');
-    console.log(JSON.stringify(this._headers));
-    return this.httpClient.get<IAccount[]>(this._accountsUrl, { headers: this._headers })
+    // console.log(JSON.stringify(this._headers));
+    return this.httpClient.get<IAccount[]>(this._accountsUrl)
       .map(response => <IAccount[]>response)
       // .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);

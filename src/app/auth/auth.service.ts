@@ -1,49 +1,44 @@
 import { Injectable } from '@angular/core';
-// import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Http, Headers, Response } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { CONFIG } from '../shared/config';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import 'rxjs/Observable/throw';
 
 import { Login, IRegister } from '../models/login';
 import { ExceptionService } from '../core/exception.service';
 
 @Injectable()
 export class AuthService {
-  // private _headers = new HttpHeaders().set('Content-Type', 'application/json');
-  private _headers = new Headers();
+  private _headers = new HttpHeaders().set('Content-Type', 'application/json');
   private _authUrl = CONFIG.baseUrls.auth; // 'http://localhost:34479/api/auth';
 
-  constructor(private http: Http, // HttpClient,
+  constructor(private http: HttpClient,
     private exceptionService: ExceptionService) {
       this._headers.append('Content-Type', 'application/json');
   }
 
   login(login: Login): Observable<any> {
-    return this.http.post(this._authUrl + '/authenticate', JSON.stringify(login), { headers: this._headers, withCredentials: false })
-      .map(response => response)
-      // .do(data => console.log(document.cookie))
-      .catch(this.handleError);
+    return this.http.post(this._authUrl + '/authenticate', JSON.stringify(login), { headers: this._headers })
+      .map((response: HttpResponse<any>) => response)
+      .do(data => console.log('All: ' + JSON.stringify(data)))
+      .catch((error: HttpErrorResponse) => {
+        console.log(error);
+        return Observable.of(error);
+      });
   }
 
-  // login(login: Login): Observable<any> {
-  //   return this.http.post(this._authUrl + '/authenticate', JSON.stringify(login), { headers: this._headers })
-  //     .map((response: HttpResponse<any>) => response)
-  //     .do(data => console.log('All: ' + JSON.stringify(data)))
-  //     .catch((error: HttpErrorResponse) => {
-  //       console.log(error);
-  //       return Observable.of(error);
-  //     });
-  // }
-
   logout(): Observable<any> {
-    return this.http.post(this._authUrl + '/logout', '', { headers: this._headers })
-      // .map(response => response.json())
+    return this.http.post(this._authUrl + '/logout', JSON.stringify(''))
+      .map((response: HttpResponse<any>) => response)
       .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch(this.handleError);
+      .catch((error: HttpErrorResponse) => {
+        console.log(error);
+        return Observable.of(error);
+      });
   }
 
   isUserAuthenticated(): boolean {
@@ -74,6 +69,6 @@ export class AuthService {
   private handleError(error: Response) {
     // this.exceptionService.catchBadResponse(error);
     console.log(error);
-    return Observable.throw(error.status || 'Unknown error, likely an auth error');
+    return Observable.of(error.status);  // Observable.throw(error.status || 'Unknown error, likely an auth error');
   }
 }
