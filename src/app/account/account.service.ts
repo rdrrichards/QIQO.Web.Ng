@@ -24,36 +24,36 @@ export class AccountService {
     // this._headers.append('Access-Control-Allow-Origin', '*');
     // console.log(JSON.stringify(this._headers));
     return this.httpClient.get<IAccount[]>(this._accountsUrl)
-      .map(response => <IAccount[]>response)
+      // .map(response => <IAccount[]>response)
       // .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
   getAccount(id: number): Observable<IAccount> {
     return this.httpClient.get<IAccount>(this._accountsUrl + '/' + id)
-      .map(response => <IAccount>response)
+      // .map(response => <IAccount>response)
       // .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
-  addAccount(account: IAccount): Observable<IAccount> {
+  addAccount(account: IAccount): Observable<any> {
     return this.httpClient.post(this._accountsUrl, JSON.stringify(account), { headers: this._headers })
-      .map(response => response)
+      // .map(response => response)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
-  updateAccount(account: IAccount): Observable<IAccount> {
+  updateAccount(account: IAccount): Observable<any> {
     console.log(JSON.stringify(account));
     return this.httpClient.put(this._accountsUrl, JSON.stringify(account), { headers: this._headers })
-      .map(response => response)
+      // .map(response => response)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
   deleteAccount(id: number): Observable<any> {
     return this.httpClient.delete(this._accountsUrl + '/' + id)
-      .map(response => response, { headers: this._headers })
+      // .map(response => response, { headers: this._headers })
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
