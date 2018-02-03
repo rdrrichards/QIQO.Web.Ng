@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from './account.service';
 import { IAccount } from '../models/account';
@@ -6,19 +6,20 @@ import { EntityService } from '../core/entity.service';
 import { ModalService } from '../core/modal/modal.service';
 import { ToastService } from '../core/toast/toast.service';
 import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-export class AccountComponent implements OnInit, CanComponentDeactivate {
+export class AccountComponent implements OnInit, CanComponentDeactivate, OnDestroy {
   public pageTitle = 'Account Detail';
   public account: IAccount;
   public editAccount: IAccount = <IAccount>{};
   public errMessage: string;
   private _id: number;
-  private sub: any;
+  private sub: Subscription;
 
   constructor(private _accountService: AccountService,
     private route: ActivatedRoute,
@@ -59,6 +60,10 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
   addAccount() {
     console.log('addAccount in the account.component');
     console.log(this.account);
@@ -83,8 +88,8 @@ export class AccountComponent implements OnInit, CanComponentDeactivate {
   deleteAccount() {
     this._accountService.deleteAccount(this.account.accountKey)
       .subscribe(
-      acct => this.onBack(),
-      error => alert('Error deleting account ' + this.account.accountName)
+        () => this.onBack(),
+        error => alert(`Error deleting account ${this.account.accountName}. Error: ${error.message}`)
       );
   }
 

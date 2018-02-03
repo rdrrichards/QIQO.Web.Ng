@@ -1,3 +1,4 @@
+import { Login, IRegister } from './../models/login';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { CONFIG } from '../shared/config';
@@ -8,16 +9,12 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/observable/throw';
 
-import { Login, IRegister } from '../models/login';
-import { ExceptionService } from '../core/exception.service';
-
 @Injectable()
 export class AuthService {
   private _headers = new HttpHeaders().set('Content-Type', 'application/json');
   private _authUrl = CONFIG.baseUrls.auth; // 'http://localhost:34479/api/auth';
 
-  constructor(private http: HttpClient,
-    private exceptionService: ExceptionService) {
+  constructor(private http: HttpClient) {
       this._headers.append('Content-Type', 'application/json');
   }
 
@@ -51,9 +48,9 @@ export class AuthService {
   }
 
   getLoggedInUser(): Login {
-    let _user: Login;
+    let _user: Login = new Login('', '', false);
     if (this.isUserAuthenticated()) {
-      const _userData = JSON.parse(localStorage.getItem('user'));
+      const _userData = JSON.parse(localStorage.getItem('user')!);
       _user = { userName: _userData.userName, password: '', rememberMe: _userData.rememberMe };
     }
     return _user;
@@ -67,8 +64,7 @@ export class AuthService {
   }
 
   private handleError(error: Response) {
-    // this.exceptionService.catchBadResponse(error);
     console.log(error);
-    return Observable.of(error.status);  // Observable.throw(error.status || 'Unknown error, likely an auth error');
+    return Observable.of(error.status);
   }
 }

@@ -16,7 +16,7 @@ export class RegisterComponent {
 
   register() {
     this._authService.register(this.account)
-      .subscribe(acct => {
+      .subscribe(() => {
         localStorage.setItem('user', JSON.stringify(this.register));
         this._router.navigate(['/']);
       });

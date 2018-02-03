@@ -1,8 +1,5 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { ProductService } from './product.service';
@@ -13,12 +10,6 @@ import { CartService } from '../cart/cart.service';
 describe('ProductComponent', () => {
   let component: ProductComponent;
   let fixture: ComponentFixture<ProductComponent>;
-
-  let productService: ProductService;
-  let route: ActivatedRoute;
-  let router: Router;
-  let entityService: EntityService;
-  let cartService: CartService;
 
   const productServiceStub = {};
   const routeStub = {};
@@ -42,14 +33,6 @@ describe('ProductComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
-
-    productService = TestBed.get(ProductService);
-    route = TestBed.get(ActivatedRoute);
-    router = TestBed.get(Router);
-    entityService = TestBed.get(EntityService);
-    cartService = TestBed.get(CartService);
-
-    // fixture.detectChanges();
   });
 
   it('should create', () => {

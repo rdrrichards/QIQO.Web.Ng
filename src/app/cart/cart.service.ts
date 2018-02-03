@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ICart } from '../models/cart';
+import { ICart, Cart } from '../models/cart';
 import { CartItem } from '../models/cart-item';
 import { IProduct } from '../models/product';
 
@@ -13,13 +13,13 @@ export class CartService {
     try {
       if (localStorage.getItem(key)) {
         console.log('Found existing cart!');
-        return JSON.parse(localStorage.getItem(key));
+        return JSON.parse(localStorage.getItem(key)!);
       } else {
         console.log('Creating new cart!');
-        const cart = {
+        const cart: Cart = {
           id: key,
-          account: null,
-          orderDeliverByDate: null,
+          account: undefined,
+          orderDeliverByDate: undefined,
           cartItems: []
         };
         this.saveCart(key, cart);
@@ -28,15 +28,16 @@ export class CartService {
     } catch (err) {
       console.log('Something went wrong!');
       console.log(err);
+      return err;
     }
   }
 
   addCart(key: string): ICart {
     console.log('Creating new cart!');
-    const cart = {
+    const cart: Cart = {
       id: key,
-      account: null,
-      orderDeliverByDate: null,
+      account: undefined,
+      orderDeliverByDate: undefined,
       cartItems: []
     };
     this.saveCart(key, cart);
@@ -46,11 +47,11 @@ export class CartService {
   addCartItem(key: string, product: IProduct, quantity: number, price: number): ICart {
     console.log('Creating new cart item!');
     const cart = this.getCart(key);
-    const line = cart.cartItems.find(item => item.product.productKey === product.productKey);
+    const line = cart.cartItems!.find(item => item.product.productKey === product.productKey);
     if (line !== undefined) {
       line.quantity += quantity;
     } else {
-      cart.cartItems.push(new CartItem(product, quantity, price));
+      cart.cartItems!.push(new CartItem(product, quantity, price));
     }
     this.saveCart(key, cart);
     return cart;
@@ -59,8 +60,8 @@ export class CartService {
   removeCartItem(key: string, product: IProduct): ICart {
     console.log('Removing cart item!');
     const cart = this.getCart(key);
-    const index = cart.cartItems.findIndex(line => line.product.productKey === product.productKey);
-    cart.cartItems.splice(index, 1);
+    const index = cart.cartItems!.findIndex(line => line.product.productKey === product.productKey);
+    cart.cartItems!.splice(index, 1);
     this.saveCart(key, cart);
     return cart;
   }
@@ -70,7 +71,7 @@ export class CartService {
       if (cart) {
         cart.id = key;
         localStorage.setItem(key, JSON.stringify(cart));
-        console.log(JSON.parse(localStorage.getItem(key)));
+        console.log(JSON.parse(localStorage.getItem(key)!));
         return true;
       }
     }

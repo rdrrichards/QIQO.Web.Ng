@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IOrder } from '../models/order';
 import { OrderService } from '../orders/order.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     templateUrl: './account.orders.component.html',
 })
 
-export class AccountOrdersComponent implements OnInit {
+export class AccountOrdersComponent implements OnInit, OnDestroy {
     public pageTitle = 'Account Orders';
     public orders: IOrder[];
     public errMessage: string;
-    private sub: any;
+    private sub: Subscription;
 
     constructor(private _orderService: OrderService,
-        private route: ActivatedRoute,
-        private _router: Router) {
+        private route: ActivatedRoute) {
     }
 
     ngOnInit() {
@@ -29,5 +29,9 @@ export class AccountOrdersComponent implements OnInit {
                 error => this.errMessage = <any>error
                 );
         });
+    }
+
+    ngOnDestroy() {
+      this.sub.unsubscribe();
     }
 }

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IProduct } from '../models/product';
 import { ProductService } from './product.service';
 import { EntityService } from '../core/entity.service';
 import { CartService } from '../cart/cart.service';
 import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
+import { Subscription } from 'rxjs/Subscription';
 
 const cartKey = 'qiqocart';
 
@@ -12,12 +13,12 @@ const cartKey = 'qiqocart';
   selector: 'app-product',
   templateUrl: './product.component.html'
 })
-export class ProductComponent implements OnInit, CanComponentDeactivate {
+export class ProductComponent implements OnInit, CanComponentDeactivate, OnDestroy {
   public pageTitle = 'Product Details';
   public product: IProduct;
   public editProduct: IProduct = <IProduct>{};
   public errMessage: string;
-  private sub: any;
+  private sub: Subscription;
 
   constructor(private _productService: ProductService,
     private route: ActivatedRoute,
@@ -51,6 +52,10 @@ export class ProductComponent implements OnInit, CanComponentDeactivate {
         error => this.errMessage = <any>error
         );
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   addProduct() {

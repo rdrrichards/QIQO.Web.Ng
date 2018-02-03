@@ -2,9 +2,6 @@ import { AuthService } from './../auth/auth.service';
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
-  // CanActivateChild,
-  // CanLoad,
-  // Route,
   Router,
   ActivatedRouteSnapshot,
   RouterStateSnapshot
@@ -16,11 +13,10 @@ export class CanActivateGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
-    // private toastService: ToastService,
     private router: Router) { }
 
   canActivate(
-    next: ActivatedRouteSnapshot,
+    _next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
     console.log('can activate auth gaurd called');
@@ -33,11 +29,4 @@ export class CanActivateGuard implements CanActivate {
     // this.toastService.activate(this.deniedMessage);
     return false;
   }
-
-  // canActivateChild(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot
-  // ) {
-  //   return this.canActivate(route, state);
-  // }
 }

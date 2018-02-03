@@ -8,6 +8,6 @@ export class EntityService {
 
   merge = (target: any, ...sources: any[]) => Object.assign(target, ...sources);
 
-  propertiesDiffer = (entityA: {}, entityB: {}) =>
+  propertiesDiffer = (entityA: any = {}, entityB: any = {}) =>
     Object.keys(entityA).find(key => entityA[key] !== entityB[key])
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CartService } from './cart.service';
 import { ProductService } from '../product/product.service';
 
@@ -18,8 +17,7 @@ export class CartComponent implements OnInit {
     public cart: Cart;
 
     constructor(private _productService: ProductService,
-        private _cartService: CartService,
-        private _router: Router) {
+        private _cartService: CartService) {
     }
 
     ngOnInit() {
@@ -56,7 +54,7 @@ export class CartComponent implements OnInit {
     }
 
     isEmpty() {
-        return (this.cart.cartItems.length > 0 ? false : true);
+        return (this.cart.cartItems!.length > 0 ? false : true);
     }
 
     testAddItem(id: number) {
@@ -71,9 +69,4 @@ export class CartComponent implements OnInit {
                 });
         }
     }
-
-    // private _gotoCart() {
-    //     const route = ['/cart'];
-    //     this._router.navigate(route);
-    // }
 }

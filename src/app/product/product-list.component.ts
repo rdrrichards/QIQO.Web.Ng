@@ -58,9 +58,7 @@ export class ProductListComponent implements OnInit {
         return !(this.page.currentPage < this.page.totalPages);
     }
 
-    categoryChanged(newValue: string) {
-        // console.log('New Category: ' + newValue);
-        // this.selectedCategory = newValue;
+    categoryChanged() {
         this.next(1, this.perPageCnt, this.orderBy, this.selectedCategory);
     }
 

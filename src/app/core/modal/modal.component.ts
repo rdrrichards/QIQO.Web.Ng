@@ -37,9 +37,9 @@ export class ModalComponent implements OnInit {
         this.okText = this.defaults.okText;
         this.cancelText = this.defaults.cancelText;
 
-        const promise = new Promise<boolean>((resolve, reject) => {
-            this.negativeOnClick = (e: any) => resolve(false);
-            this.positiveOnClick = (e: any) => resolve(true);
+        const promise = new Promise<boolean>((resolve) => {
+            this.negativeOnClick = () => resolve(false);
+            this.positiveOnClick = () => resolve(true);
             this.show();
         });
 
@@ -53,8 +53,6 @@ export class ModalComponent implements OnInit {
     }
 
     private show() {
-        document.onkeyup = null;
-
         if (!this.modalElement || !this.cancelButton || !this.okButton) {
             return;
         }
@@ -92,7 +90,6 @@ export class ModalComponent implements OnInit {
     }
 
     private hideDialog() {
-        document.onkeyup = null;
         this.modalElement.style.opacity = 0;
         window.setTimeout(() => this.modalElement.style.zIndex = 0, 400);
     }

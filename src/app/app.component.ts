@@ -9,12 +9,11 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  applicationName = 'The App Works!';
   loading = true;
 
   constructor(public authService: AuthService,
     private router: Router) {
-      router.events.subscribe((routerEvent: Event) => {
+      this.router.events.subscribe((routerEvent: Event) => {
         this.checkRouterEvent(routerEvent);
     });
   }
@@ -34,7 +33,7 @@ export class AppComponent {
 
   logout(): void {
     this.authService.logout()
-      .subscribe(res => {
+      .subscribe(() => {
         localStorage.removeItem('user');
       },
       error => console.error('Error: ' + error),
