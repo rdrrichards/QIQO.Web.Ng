@@ -7,8 +7,8 @@ export interface IAccount {
   accountName: string;
   accountDesc: string;
   accountDBA: string;
-  accountStartDate: Date;
-  accountEndDate: Date;
+  accountStartDate: string;
+  accountEndDate: string;
   addresses: IAddress[];
   attributes: IEntityAttribute[];
   employees: IAccountPerson[];

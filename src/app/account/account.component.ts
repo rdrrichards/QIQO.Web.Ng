@@ -7,6 +7,7 @@ import { ModalService } from '../core/modal/modal.service';
 import { ToastService } from '../core/toast/toast.service';
 import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
 import { Subscription } from 'rxjs/Subscription';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-account',
@@ -26,7 +27,9 @@ export class AccountComponent implements OnInit, CanComponentDeactivate, OnDestr
     private router: Router,
     private entityService: EntityService,
     private modalService: ModalService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+
+    private datePipe: DatePipe) {
   }
 
   canDeactivate() {
@@ -116,9 +119,15 @@ export class AccountComponent implements OnInit, CanComponentDeactivate, OnDestr
     if (account) {
       this.account = account;
       this.editAccount = this.entityService.clone(this.account);
+      this.editAccount.accountStartDate = this.formatDate(this.editAccount.accountStartDate);
+      this.editAccount.accountEndDate = this.formatDate(this.editAccount.accountEndDate);
     } else {
       this._gotoAccounts();
     }
+  }
+
+  formatDate(date: string): string {
+    return this.datePipe.transform(date, 'yyyy-MM-dd')!;
   }
 
   private _gotoAccounts() {

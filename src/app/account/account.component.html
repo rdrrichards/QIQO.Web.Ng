@@ -30,8 +30,8 @@
                             <td>{{ account.accountName }}</td>
                             <td>{{ account.accountDesc }}</td>
                             <td>{{ account.accountDBA }}</td>
-                            <td>{{ account.accountStartDate }}</td>
-                            <td>{{ account.accountEndDate }}</td>
+                            <td>{{ account.accountStartDate | date:'yyyy-MM-dd' }}</td>
+                            <td>{{ account.accountEndDate | date:'yyyy-MM-dd' }}</td>
                             <td>{{ account.addresses.length }}</td>
                             <td>{{ account.attributes.length }}</td>
                             <td>{{ account.employees.length }}</td>
@@ -61,11 +61,11 @@
             </div>
             <div class="form-group">
                 <label for="accountStartDate">Account Start Date:</label>
-                <input type="text" class="form-control" id="accountStartDate" [(ngModel)]="editAccount.accountStartDate">
+                <input type="date" class="form-control" id="accountStartDate" [(ngModel)]="editAccount.accountStartDate">
             </div>
             <div class="form-group">
                 <label for="accountEndDate">Account End Date:</label>
-                <input type="text" class="form-control" id="accountEndDate" [(ngModel)]="editAccount.accountEndDate">
+                <input type="date" class="form-control" id="accountEndDate" [(ngModel)]="editAccount.accountEndDate">
             </div>
 
             <div>

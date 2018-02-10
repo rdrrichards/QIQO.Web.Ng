@@ -31,8 +31,8 @@
                             <td>{{ account.accountName }}</td>
                             <td>{{ account.accountDesc }}</td>
                             <!--<td>{{ account.accountDBA }}</td>-->
-                            <td>{{ account.accountStartDate | date:'shortDate' }}</td>
-                            <td>{{ account.accountEndDate | date:'shortDate' }}</td>
+                            <td>{{ account.accountStartDate | date:'yyyy-MM-dd' }}</td>
+                            <td>{{ account.accountEndDate | date:'yyyy-MM-dd' }}</td>
                             <td>{{ account.addresses.length }}</td>
                             <td>{{ account.attributes.length }}</td>
                             <td>{{ account.employees.length }}</td>

@@ -9,7 +9,7 @@
                 <span>
                     <div class="form-group panel panel-secondary">
                         <label for="selectedCategory">Product Category</label>
-                        <select [(ngModel)]="selectedCategory" 
+                        <select [(ngModel)]="selectedCategory"
                             required (change)="categoryChanged()">
                             <option *ngFor="let pc of prod_cats" [value]="pc[0]">{{pc[1]}}</option>
                         </select>
@@ -39,7 +39,7 @@
                             <td>Product Type</td>
                             <td>Product Short Decription</td>
                             <td>Product Long Description</td>
-                            <td>Product Image Path</td>
+                            <!-- <td>Product Image Path</td> -->
                             <td>Product Default Price</td>
                             <td>Product Default Quantity</td>
                         </tr>
@@ -53,7 +53,7 @@
                             <td>{{ product.productType }}</td>
                             <td>{{ product.productShortDesc }}</td>
                             <td>{{ product.productLongDesc }}</td>
-                            <td>{{ product.productImagePath }}</td>
+                            <!-- <td>{{ product.productImagePath }}</td> -->
                             <td>{{ product.productBasePrice | currency }}</td>
                             <td>{{ product.productBaseQuantity | number }}</td>
                         </tr>
@@ -63,8 +63,8 @@
                 </div>
             </div>
             <div class='panel-footer'>
-                Page {{page.currentPage}} of {{page.totalPages}} pages ({{page.totalCount}} Product(s) total); Category: {{page.category}}; Sort: {{page.orderBy}} 
-                
+                Page {{page.currentPage}} of {{page.totalPages}} pages ({{page.totalCount}} Product(s) total); Category: {{page.category}}; Sort: {{page.orderBy}}
+
                 <button (click)="next(page.currentPage - 1, page.pageSize, page.orderBy, page.category)" [disabled]="canGoBack()">Prior</button>
                 &nbsp;
                 <button (click)="next(page.currentPage + 1, page.pageSize, page.orderBy, page.category)" [disabled]="canGoForward()">Next</button>
