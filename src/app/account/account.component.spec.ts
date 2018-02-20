@@ -8,6 +8,7 @@ import { AccountService } from './account.service';
 import { EntityService } from '../core/entity.service';
 import { ModalService } from '../core/modal/modal.service';
 import { ToastService } from '../core/toast/toast.service';
+import { DatePipe } from '@angular/common';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
@@ -30,7 +31,7 @@ describe('AccountComponent', () => {
       { provide: Router, useValue: routerStub },
       { provide: EntityService, useValue: entityServiceStub },
       { provide: ModalService, useValue: modalServiceStub },
-      { provide: ToastService, useValue: toastServiceStub }]
+      { provide: ToastService, useValue: toastServiceStub }, DatePipe]
     })
       .compileComponents();
   }));

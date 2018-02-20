@@ -22,10 +22,11 @@ describe('ProductComponent', () => {
       imports: [FormsModule],
       declarations: [ProductComponent],
       providers: [{ provide: ProductService, useValue: productServiceStub },
-      { provide: ActivatedRoute, useValue: routeStub },
-      { provide: Router, useValue: routerStub },
-      { provide: EntityService, useValue: entityServiceStub },
-      { provide: CartService, useValue: cartServiceStub } ]
+        { provide: ActivatedRoute, useValue: routeStub },
+        { provide: Router, useValue: routerStub },
+        { provide: CartService, useValue: cartServiceStub },
+        { provide: EntityService, useValue: entityServiceStub }
+    ]
     })
       .compileComponents();
   }));
