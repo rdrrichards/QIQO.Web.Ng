@@ -39,7 +39,7 @@ export class AccountService {
   addAccount(account: IAccount): Observable<any> {
     return this.httpClient.post(this._accountsUrl, JSON.stringify(account), { headers: this._headers })
       // .map(response => response)
-      .do(data => console.log('All: ' + JSON.stringify(data)))
+      .do((data: any) => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
@@ -47,14 +47,14 @@ export class AccountService {
     console.log(JSON.stringify(account));
     return this.httpClient.put(this._accountsUrl, JSON.stringify(account), { headers: this._headers })
       // .map(response => response)
-      .do(data => console.log('All: ' + JSON.stringify(data)))
+      .do((data: any) => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
   deleteAccount(id: number): Observable<any> {
     return this.httpClient.delete(this._accountsUrl + '/' + id)
       // .map(response => response, { headers: this._headers })
-      .do(data => console.log('All: ' + JSON.stringify(data)))
+      .do((data: any) => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
