@@ -1,13 +1,9 @@
 import { Login, IRegister } from './../models/login';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CONFIG } from '../shared/config';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/observable/throw';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -19,23 +15,11 @@ export class AuthService {
   }
 
   login(login: Login): Observable<any> {
-    return this.http.post(this._authUrl + '/authenticate', JSON.stringify(login), { headers: this._headers })
-      .map((response: HttpResponse<any>) => response)
-      .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch((error: HttpErrorResponse) => {
-        console.log(error);
-        return Observable.of(error);
-      });
+    return this.http.post(this._authUrl + '/authenticate', JSON.stringify(login), { headers: this._headers });
   }
 
   logout(): Observable<any> {
-    return this.http.post(this._authUrl + '/logout', JSON.stringify(''))
-      .map((response: HttpResponse<any>) => response)
-      .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch((error: HttpErrorResponse) => {
-        console.log(error);
-        return Observable.of(error);
-      });
+    return this.http.post(this._authUrl + '/logout', JSON.stringify(''));
   }
 
   isUserAuthenticated(): boolean {
@@ -57,14 +41,11 @@ export class AuthService {
   }
 
   register(register: IRegister): Observable<any> {
-    return this.http.post(this._authUrl + '/register', JSON.stringify(register), { headers: this._headers })
-      .map(response => response)
-      .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch(this.handleError);
+    return this.http.post(this._authUrl + '/register', JSON.stringify(register), { headers: this._headers });
   }
 
-  private handleError(error: Response) {
-    console.log(error);
-    return Observable.of(error.status);
-  }
+  // private handleError(error: Response) {
+  //   console.log(error);
+  //   return Observable.of(error.status);
+  // }
 }

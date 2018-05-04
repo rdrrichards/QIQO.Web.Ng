@@ -4,8 +4,8 @@ import { IProduct } from '../models/product';
 import { ProductService } from './product.service';
 import { EntityService } from '../core/entity.service';
 import { CartService } from '../cart/cart.service';
-import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
-import { Subscription } from 'rxjs/Subscription';
+// import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
+import { Subscription } from 'rxjs';
 
 const cartKey = 'qiqocart';
 
@@ -13,7 +13,7 @@ const cartKey = 'qiqocart';
   selector: 'app-product',
   templateUrl: './product.component.html'
 })
-export class ProductComponent implements OnInit, CanComponentDeactivate, OnDestroy {
+export class ProductComponent implements OnInit, OnDestroy {
   public pageTitle = 'Product Details';
   public product: IProduct;
   public editProduct: IProduct = <IProduct>{};
@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit, CanComponentDeactivate, OnDestr
   }
 
   canDeactivate() {
-    return !this.product || !this._isDirty();
+    return true; // !this.product || !this._isDirty();
   }
 
   cancel(showToast = true) {
@@ -103,9 +103,9 @@ export class ProductComponent implements OnInit, CanComponentDeactivate, OnDestr
     this._router.navigate(['/products']);
   }
 
-  private _isDirty() {
-    return this._entityService.propertiesDiffer(this.product, this.editProduct);
-  }
+  // private _isDirty() {
+  //   return this._entityService.propertiesDiffer(this.product, this.editProduct);
+  // }
 
   private _setEditProduct(product: IProduct) {
     if (product) {

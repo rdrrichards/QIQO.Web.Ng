@@ -3,10 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from './account.service';
 import { IAccount } from '../models/account';
 import { EntityService } from '../core/entity.service';
-import { ModalService } from '../core/modal/modal.service';
-import { ToastService } from '../core/toast/toast.service';
-import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
-import { Subscription } from 'rxjs/Subscription';
+// import { ModalService } from '../core/modal/modal.service';
+// import { ToastService } from '../core/toast/toast.service';
+// import { CanComponentDeactivate } from '../core/can-deactivate-guard.service';
+import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-export class AccountComponent implements OnInit, CanComponentDeactivate, OnDestroy {
+export class AccountComponent implements OnInit, OnDestroy {
   public pageTitle = 'Account Detail';
   public account: IAccount;
   public editAccount: IAccount = <IAccount>{};
@@ -26,9 +26,6 @@ export class AccountComponent implements OnInit, CanComponentDeactivate, OnDestr
     private route: ActivatedRoute,
     private router: Router,
     private entityService: EntityService,
-    private modalService: ModalService,
-    private toastService: ToastService,
-
     private datePipe: DatePipe) {
   }
 
@@ -36,14 +33,11 @@ export class AccountComponent implements OnInit, CanComponentDeactivate, OnDestr
     // console.log(`**canDeactivate ${this.account.accountName}`);
     // console.log(`**this.account ${this.account}`);
     // console.log(`**this._isDirty ${this._isDirty()}`);
-    return !this.account || !this._isDirty() || this.modalService.activate();
+    return true; // !this.account || !this._isDirty() || this.modalService.activate();
   }
 
-  cancel(showToast = true) {
-    // this.editAccount = this.entityService.clone(this.account);
-    if (showToast) {
-      this.toastService.activate(`Cancelled changes to ${this.account.accountName}`);
-    }
+  cancel() {
+    console.log('cancel clicked');
     this._gotoAccounts();
   }
 
@@ -111,9 +105,9 @@ export class AccountComponent implements OnInit, CanComponentDeactivate, OnDestr
     this.router.navigate(link);
   }
 
-  private _isDirty() {
-    return this.entityService.propertiesDiffer(this.account, this.editAccount);
-  }
+  // private _isDirty() {
+  //   return this.entityService.propertiesDiffer(this.account, this.editAccount);
+  // }
 
   private _setEditAccount(account: IAccount) {
     if (account) {
@@ -131,9 +125,8 @@ export class AccountComponent implements OnInit, CanComponentDeactivate, OnDestr
   }
 
   private _gotoAccounts() {
-    // const id = this.account ? this.account.accountKey : null;
-    const route = ['/accounts'];
-    this.router.navigate(route);
+    console.log('_gotoAccounts');
+    this.router.navigate(['/accounts']);
   }
 
 }

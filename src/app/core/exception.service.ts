@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Observable } from 'rxjs';
 
 import { ToastService } from './toast/toast.service';
 
@@ -17,6 +16,6 @@ export class ExceptionService {
       (res.statusText || 'unknown error');
     this.toastService.activate(`Error - Bad Response - ${emsg}`);
     // return Observable.throw(emsg); // TODO: We should NOT swallow error here.
-    return Observable.of(false);
+    return Observable.create(false);
   }
 }

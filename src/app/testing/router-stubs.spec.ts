@@ -38,7 +38,7 @@
 // // #docregion activated-route-stub
 // import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 // import { convertToParamMap, ParamMap } from '@angular/router';
-// import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs';
 
 // @Injectable()
 // export class ActivatedRouteStub {

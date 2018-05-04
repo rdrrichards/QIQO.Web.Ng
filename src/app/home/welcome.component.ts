@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, VERSION } from '@angular/core';
 
 @Component({
   selector: 'app-welcome',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 })
 export class WelcomeComponent {
   public pageTitle = 'Welcome to the Cheesecake Fool!';
+  ver = VERSION.full;
 
   constructor() {
   }
