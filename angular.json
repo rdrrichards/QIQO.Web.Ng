@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "qiqo.web.a4": {
+    "qiqoWebA6": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -16,6 +16,7 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.json",
             "polyfills": "src/polyfills.ts",
+            "progress": true,
             "assets": [
               "src/assets",
               "src/favicon.ico",
