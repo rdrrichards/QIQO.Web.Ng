@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "qiqo.web.a4": {
+    "qiqoAngular": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -44,24 +44,35 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "qiqo.web.a4:build"
+            "browserTarget": "qiqoAngular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "qiqo.web.a4:build:production"
+              "browserTarget": "qiqoAngular:build:production"
+            },
+            "local": {
+              "browserTarget": "qiqoAngular:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "qiqo.web.a4:build"
+            "browserTarget": "qiqoAngular:build"
           }
         },
         "test": {
@@ -92,7 +103,7 @@
         }
       }
     },
-    "qiqo.web.a4-e2e": {
+    "qiqoAngular-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -101,7 +112,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "qiqo.web.a4:serve"
+            "devServerTarget": "qiqoAngular:serve"
           }
         },
         "lint": {
@@ -116,7 +127,7 @@
       }
     }
   },
-  "defaultProject": "qiqo.web.a4",
+  "defaultProject": "qiqoAngular",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
