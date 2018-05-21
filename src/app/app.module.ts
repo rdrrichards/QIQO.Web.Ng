@@ -15,12 +15,6 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routes';
 
-import { ProductService } from './product/product.service';
-import { AccountService } from './account/account.service';
-import { OrderService } from './orders/order.service';
-import { CartService } from './cart/cart.service';
-import { AuthService } from './auth/auth.service';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -39,7 +33,7 @@ import { AuthService } from './auth/auth.service';
     CoreModule,
     routing
   ],
-  providers: [ appRoutingProviders, ProductService, AccountService, OrderService, CartService, AuthService, DatePipe ],
+  providers: [ appRoutingProviders, DatePipe ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}

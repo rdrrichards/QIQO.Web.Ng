@@ -8,6 +8,7 @@ import { AccountListComponent } from './account-list.component';
 import { AccountHomeComponent } from './account-home.component';
 import { AccountOrdersComponent } from './account.orders.component';
 import { AccountOrderComponent } from './account.order.component';
+import { AccountService } from './account.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { AccountOrderComponent } from './account.order.component';
   exports: [ AccountComponent, AccountHomeComponent, AccountListComponent,
     AccountOrdersComponent, AccountOrderComponent ],
   declarations: [ AccountComponent, AccountHomeComponent, AccountListComponent,
-    AccountOrdersComponent, AccountOrderComponent ]
+    AccountOrdersComponent, AccountOrderComponent ],
+    providers: [AccountService]
 })
 export class AccountModule { }

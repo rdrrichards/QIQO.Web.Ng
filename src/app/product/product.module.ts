@@ -1,3 +1,4 @@
+import { ProductService } from './product.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { ProductHomeComponent } from './product-home.component';
     CommonModule, FormsModule, RouterModule
   ],
   exports: [ ProductHomeComponent, ProductListComponent, ProductComponent ],
-  declarations: [ ProductHomeComponent, ProductListComponent, ProductComponent ]
+  declarations: [ ProductHomeComponent, ProductListComponent, ProductComponent ],
+  providers: [ProductService]
 })
 export class ProductModule { }
