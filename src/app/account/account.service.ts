@@ -26,12 +26,12 @@ export class AccountService {
   }
 
   addAccount(account: IAccount): Observable<any> {
-    return this.httpClient.post(this._accountsUrl, JSON.stringify(account), { headers: this._headers });
+    return this.httpClient.post(this._accountsUrl, account, { headers: this._headers });
   }
 
   updateAccount(account: IAccount): Observable<any> {
     console.log(JSON.stringify(account));
-    return this.httpClient.put(this._accountsUrl, JSON.stringify(account), { headers: this._headers });
+    return this.httpClient.put(this._accountsUrl, account, { headers: this._headers });
   }
 
   deleteAccount(id: number): Observable<any> {
