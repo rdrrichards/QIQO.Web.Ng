@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AccountComponent } from './account.component';
 import { AccountService } from './account.service';
 import { EntityService } from '../core/entity.service';
-import { ModalService } from '../core/modal/modal.service';
 import { ToastService } from '../core/toast/toast.service';
 import { DatePipe } from '@angular/common';
 
@@ -18,7 +17,6 @@ describe('AccountComponent', () => {
   const routeStub = {};
   const routerStub = {};
   const entityServiceStub = {};
-  const modalServiceStub = {};
   const toastServiceStub = {};
 
   beforeEach(async(() => {
@@ -30,7 +28,6 @@ describe('AccountComponent', () => {
       { provide: ActivatedRoute, useValue: routeStub },
       { provide: Router, useValue: routerStub },
       { provide: EntityService, useValue: entityServiceStub },
-      { provide: ModalService, useValue: modalServiceStub },
       { provide: ToastService, useValue: toastServiceStub }, DatePipe]
     })
       .compileComponents();

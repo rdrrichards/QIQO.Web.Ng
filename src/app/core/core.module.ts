@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { EntityService } from './entity.service';
 import { ExceptionService } from './exception.service';
 import { ToastModule } from './toast/toast.module';
-import { ModalModule } from './modal/modal.module';
+// import { ModalModule } from './modal/modal.module';
 
 import { CanActivateGuard } from './can-activate-guard.service';
 
@@ -14,10 +14,9 @@ import { CanActivateGuard } from './can-activate-guard.service';
   imports: [
     CommonModule, // we use ngFor
     RouterModule, // because we use <router-outlet> and routerLink
-    ToastModule,
-    ModalModule
+    ToastModule
   ],
-  exports: [ ToastModule, ModalModule ],
+  exports: [ ToastModule ],
   declarations: [],
   providers: [ EntityService, ExceptionService, CanActivateGuard ]
 })
