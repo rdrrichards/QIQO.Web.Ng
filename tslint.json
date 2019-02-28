@@ -70,6 +70,10 @@
       true,
       "allow-null-check"
     ],
+    "exclude": [
+      "**/dist/**",
+      "**/node_modules/**"
+    ],
     "typedef-whitespace": [
       true,
       {
