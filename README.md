@@ -1,2 +1,4 @@
-# QIQO.Web.A4
+# QIQO.Web.Ng
+
+General Angular application
 
