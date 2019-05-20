@@ -41,4 +41,52 @@ describe('AccountComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('canDeactivate should return true', () => {
+    expect(component.canDeactivate()).toBeTruthy();
+  });
+
+  it('cancel should return void', () => {
+    expect(component.cancel()).toBeUndefined();
+  });
+
+  it('ngOnInit should return void', () => {
+    expect(component.ngOnInit()).toBeUndefined();
+  });
+
+  it('addAccount should return void', () => {
+    expect(component.addAccount()).toBeUndefined();
+  });
+
+  it('updateAccount should return void', () => {
+    expect(component.updateAccount()).toBeUndefined();
+  });
+
+  it('deleteAccount should return void', () => {
+    expect(component.deleteAccount()).toBeUndefined();
+  });
+
+  it('isAddMode should return true', () => {
+    expect(component.isAddMode()).toBeTruthy();
+  });
+
+  it('onBack should return void', () => {
+    expect(component.onBack()).toBeUndefined();
+  });
+
+  it('getAccountOpenOrders should return void', () => {
+    // const account = {
+    //   accountKey: 0,
+    //   accountCode: 'string',
+    //   accountName: 'string',
+    //   accountDesc: 'string',
+    //   accountDBA: 'string',
+    //   accountStartDate: 'string',
+    //   accountEndDate: 'string',
+    //   addresses: [],
+    //   attributes: [],
+    //   employees: []
+    // };
+    expect(component.getAccountOpenOrders()).toBeUndefined();
+  });
 });
