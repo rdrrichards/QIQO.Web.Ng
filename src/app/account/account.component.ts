@@ -19,7 +19,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   public account: IAccount;
   public editAccount: IAccount = <IAccount>{};
   public errMessage: string;
-  private _id: number;
+  private _id = 0;
   private sub: Subscription;
 
   constructor(private _accountService: AccountService,
