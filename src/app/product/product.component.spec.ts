@@ -1,32 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router, ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ProductService } from './product.service';
 import { ProductComponent } from './product.component';
 import { EntityService } from '../core/entity.service';
 import { CartService } from '../cart/cart.service';
+import { Product } from 'app/models/product';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
   let fixture: ComponentFixture<ProductComponent>;
 
-  const productServiceStub = {};
-  const routeStub = {};
-  const routerStub = {};
-  const entityServiceStub = {};
-  const cartServiceStub = {};
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule ],
       declarations: [ProductComponent],
-      providers: [{ provide: ProductService, useValue: productServiceStub },
-        { provide: ActivatedRoute, useValue: routeStub },
-        { provide: Router, useValue: routerStub },
-        { provide: CartService, useValue: cartServiceStub },
-        { provide: EntityService, useValue: entityServiceStub }
-    ]
+      providers: [ ProductService, CartService, EntityService ]
     })
       .compileComponents();
   }));
@@ -34,9 +25,43 @@ describe('ProductComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
+    component.product = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('canDeactivate should return true', () => {
+    expect(component.canDeactivate()).toBeTruthy();
+  });
+
+  it('canDeactivangOnInitte should return true', () => {
+    expect(component.ngOnInit()).toBeUndefined();
+  });
+
+  it('addProduct should return true', () => {
+    expect(component.addProduct()).toBeUndefined();
+  });
+
+  it('updateProduct should return true', () => {
+    expect(component.updateProduct()).toBeUndefined();
+  });
+
+  it('isAddMode should return true', () => {
+    expect(component.isAddMode()).toBeFalsy();
+  });
+
+  it('deleteProduct should return true', () => {
+    expect(component.deleteProduct()).toBeUndefined();
+  });
+
+  it('addToCart should return true', () => {
+    const product = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
+    expect(component.addToCart(product)).toBeUndefined();
+  });
+
+  it('onBack should return true', () => {
+    expect(component.onBack()).toBeUndefined();
   });
 });
