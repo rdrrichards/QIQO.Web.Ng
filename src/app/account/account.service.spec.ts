@@ -36,4 +36,14 @@ describe('AccountService', () => {
       };
       expect(service.addAccount(editAccount)).toBeTruthy();
   })));
+
+  it(`getAccount should get`, async(inject([AccountService, HttpTestingController],
+    (service: AccountService, httpClient: HttpTestingController) => {
+      expect(service.getAccount(1)).toBeTruthy();
+  })));
+
+  it(`getAccounts should get`, async(inject([AccountService, HttpTestingController],
+    (service: AccountService, httpClient: HttpTestingController) => {
+      expect(service.getAccounts()).toBeTruthy();
+  })));
 });

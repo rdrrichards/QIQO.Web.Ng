@@ -92,4 +92,8 @@ describe('AccountComponent', () => {
   it('getAccountOpenOrders should return void', () => {
     expect(component.getAccountOpenOrders()).toBeUndefined();
   });
+
+  it('formatDate should return string', () => {
+    expect(component.formatDate('2019-01-01')).toBeDefined();
+  });
 });
