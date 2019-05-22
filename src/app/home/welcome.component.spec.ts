@@ -32,7 +32,7 @@ describe('WelcomeComponent', () => {
     expect(component.pageTitle).toBe('Welcome to the Cheesecake Fool!');
   });
 
-  it('pageTitle should be "Welcome to the Cheesecake Fool!"', () => {
+  it('pageTitle should be current framework full version', () => {
     expect(component.ver).toBe(VERSION.full);
   });
 });
