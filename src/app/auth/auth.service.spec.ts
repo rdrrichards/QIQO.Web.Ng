@@ -36,4 +36,9 @@ describe('AuthService', () => {
     (service: AuthService, httpClient: HttpTestingController) => {
       expect(service.isUserAuthenticated()).toBeFalsy();
   })));
+
+  it(`getLoggedInUser should return false`, async(inject([AuthService, HttpTestingController],
+    (service: AuthService, httpClient: HttpTestingController) => {
+      expect(service.getLoggedInUser()).toBeTruthy();
+  })));
 });
