@@ -25,6 +25,9 @@ describe('CartComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
+    const product = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
+    component.cart = { id: 'test', account: undefined, orderDeliverByDate: undefined,
+      cartItems: [{ product: product, quantity: 1, price: 1 }] };
   });
 
   it('should create', () => {
@@ -43,6 +46,10 @@ describe('CartComponent', () => {
     expect(component.saveCart()).toBeUndefined();
   });
 
+  it('ngOnInit should return void', () => {
+    expect(component.ngOnInit()).toBeUndefined();
+  });
+
   it('addItem should return void', () => {
     const product = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
     expect(component.addItem(product, 1, 1)).toBeUndefined();
@@ -56,5 +63,13 @@ describe('CartComponent', () => {
 
   it('empty should return void', () => {
     expect(component.empty()).toBeUndefined();
+  });
+
+  it('isEmpty should return false', () => {
+    expect(component.isEmpty()).toBeFalsy();
+  });
+
+  it('testAddItem should return void', () => {
+    expect(component.testAddItem(3)).toBeUndefined();
   });
 });

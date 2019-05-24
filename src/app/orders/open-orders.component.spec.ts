@@ -29,4 +29,8 @@ describe('OpenOrdersComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('ngOnInit should pop', () => {
+    expect(component.ngOnInit()).toBeUndefined();
+  });
+
 });

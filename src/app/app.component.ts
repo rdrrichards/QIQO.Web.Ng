@@ -50,54 +50,5 @@ export class AppComponent {
         routerEvent instanceof NavigationError) {
         this.loading = false;
     }
+  }
 }
-}
-
-
-/*
-
-Account Module
-  Account List (done)
-  Account Detail (done)
-  Account Orders List (done)
-  Account Order Details (done)
-  Account Service (done)
-  Account Routes (done)
-
-Cart Module
-  Cart Details (done)
-  Cart Service (done)
-  Cart Routes (done)
-
-Home/Welcome Module
-  Home Component (done)
-  Home Routes (done)
-
-Admin Module
-  Account List
-  Account Detail/Edit
-  Orders List
-  Order Detail/Edit
-  Products List
-  Product Detail/Edit
-  Admin Routes
-
-Product Module
-  Product List (done)
-  Product Details
-  Product Service (done)
-  Product Routes (done)
-
-Shared Module
-Core Module
-
-Models
-  Account (done)
-  Order (done)
-  Product (done)
-  Address (done)
-  Cart (done)
-  Entity Attribute (done)
-  Login (done)
-
-*/

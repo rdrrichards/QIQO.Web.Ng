@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NavigationStart, NavigationEnd } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -39,5 +40,23 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.logout()).toBeUndefined();
+  });
+
+  it('checkRouterEvent should return false', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.checkRouterEvent({})).toBeUndefined();
+  });
+
+  it('checkRouterEvent NavigationStart should return false', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.checkRouterEvent(new NavigationStart(1, ''))).toBeUndefined();
+  });
+
+  it('checkRouterEvent NavigationEnd should return false', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.checkRouterEvent(new NavigationEnd(1, '', ''))).toBeUndefined();
   });
 });

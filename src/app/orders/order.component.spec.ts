@@ -28,4 +28,8 @@ describe('OrderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('ngOnInit should pop', () => {
+    expect(component.ngOnInit()).toBeUndefined();
+  });
 });
