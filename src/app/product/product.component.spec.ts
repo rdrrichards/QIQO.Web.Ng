@@ -40,6 +40,10 @@ describe('ProductComponent', () => {
     expect(component.ngOnInit()).toBeUndefined();
   });
 
+  it('cancel should return void', () => {
+    expect(component.cancel()).toBeUndefined();
+  });
+
   it('addProduct should return true', () => {
     expect(component.addProduct()).toBeUndefined();
   });
