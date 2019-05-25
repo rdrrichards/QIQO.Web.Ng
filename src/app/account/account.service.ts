@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CONFIG } from '../shared/config';
-
 import { Observable } from 'rxjs';
-
 import { IAccount } from '../models/account';
 
 @Injectable()
@@ -26,7 +24,6 @@ export class AccountService {
   }
 
   updateAccount(account: IAccount): Observable<any> {
-    console.log(JSON.stringify(account));
     return this.httpClient.put(this._accountsUrl, account);
   }
 

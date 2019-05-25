@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CONFIG } from '../shared/config';
 import { Observable } from 'rxjs';
 import { IProductPage } from '../models/product-page';
@@ -7,47 +7,31 @@ import { IProduct } from '../models/product';
 
 @Injectable()
 export class ProductService {
-  private _productsUrl = CONFIG.baseUrls.products; // 'http://localhost:34479/api/products';
-  private _headers = new HttpHeaders().set('Content-Type', 'application/json');
+  private _productsUrl = CONFIG.baseUrls.products;
 
-  constructor(private http: HttpClient) {
-    // this._headers.append('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
-  }
+  constructor(private http: HttpClient) { }
 
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this._productsUrl);
   }
 
   getProductPage(page = 1, psize = 8, orderBy = 'productName', category = 'all'): Observable<IProductPage> {
-    const url = this._productsUrl + '?page=' + page + '&psize=' + psize + '&category=' + category + '&orderBy=' + orderBy;
-    console.log(url);
-    return this.http.get<IProductPage>(url);
+    return this.http.get<IProductPage>(`${this._productsUrl}?page=${page}&psize=${psize}&category=${category}&orderBy=${orderBy}`);
   }
 
   getProduct(id: number): Observable<IProduct> {
     return this.http.get<IProduct>(`${this._productsUrl}/${id}`);
   }
 
-  addProduct(product: IProduct): Observable<any> {
-    console.log(`${this._productsUrl}/${product.productKey}`);
-    return this.http.post(this._productsUrl, JSON.stringify(product), { headers: this._headers });
+  addProduct(product: IProduct): Observable<IProduct> {
+    return this.http.post<IProduct>(this._productsUrl, product);
   }
 
-  updateProduct(product: IProduct): Observable<any> {
-    const body = JSON.stringify(product);
-    console.log(`${this._productsUrl}/${product.productKey}`);
-    return this.http.put(`${this._productsUrl}`, body, { headers: this._headers });
+  updateProduct(product: IProduct): Observable<IProduct> {
+    return this.http.put<IProduct>(`${this._productsUrl}`, product);
   }
 
   deleteProduct(id: number): Observable<any> {
-    console.log(id);
-    return this.http.delete(`${this._productsUrl}/${id}`, { headers: this._headers });
+    return this.http.delete<any>(`${this._productsUrl}/${id}`);
   }
-
-  // private handleError(error: Response) {
-  //   this.exceptionService.catchBadResponse(error);
-  //   console.error(error);
-  //   return Observable.throw(error.status || 'Unknown error, likely an auth error');
-  // }
-
 }
