@@ -5,17 +5,20 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { RegisterComponent } from './register.component';
 import { AuthService } from 'app/auth/auth.service';
+import { of } from 'rxjs';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
 
   beforeEach(async(() => {
+    const authService = jasmine.createSpyObj('AuthService', ['register']);
+    authService.register.and.returnValue(of(null));
 
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientTestingModule, FormsModule ],
       declarations: [RegisterComponent],
-      providers: [AuthService]
+      providers: [{provide: AuthService, useValue: authService}]
     })
       .compileComponents();
   }));

@@ -7,18 +7,23 @@ import { ProductService } from './product.service';
 import { ProductListComponent } from './product-list.component';
 import { EntityService } from '../core/entity.service';
 import { CartService } from '../cart/cart.service';
-import { Product } from 'app/models/product';
+import { Product, IProduct } from 'app/models/product';
 import { ProductPage } from 'app/models/product-page';
+import { of } from 'rxjs';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
   let fixture: ComponentFixture<ProductListComponent>;
+  const testProducts: IProduct[] = [];
 
   beforeEach(async(() => {
+    const productService = jasmine.createSpyObj('ProductService', ['getProductPage']);
+    productService.getProductPage.and.returnValue(of(testProducts));
+
     TestBed.configureTestingModule({
       imports: [FormsModule, RouterTestingModule, HttpClientTestingModule ],
       declarations: [ProductListComponent],
-      providers: [ ProductService, CartService, EntityService ]
+      providers: [ {provide: ProductService, useValue: productService}, CartService, EntityService ]
     })
       .compileComponents();
   }));

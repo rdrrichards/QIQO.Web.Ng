@@ -5,17 +5,20 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AccountListComponent } from './account-list.component';
 import { AccountService } from './account.service';
+import { of } from 'rxjs';
+import { IAccount } from 'app/models/account';
 
 describe('AccountListComponent', () => {
   let component: AccountListComponent;
   let fixture: ComponentFixture<AccountListComponent>;
-
+  const testAccounts: IAccount[] = [];
   beforeEach(async(() => {
-
+    const accountService = jasmine.createSpyObj('AccountService', ['getAccounts']);
+    accountService.getAccounts.and.returnValue(of(testAccounts));
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, HttpClientTestingModule, FormsModule ],
+      imports: [RouterTestingModule, HttpClientTestingModule, FormsModule],
       declarations: [AccountListComponent],
-      providers: [AccountService]
+      providers: [{ provide: AccountService, useValue: accountService }]
     })
       .compileComponents();
   }));

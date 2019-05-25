@@ -32,9 +32,9 @@ describe('AuthService', () => {
       expect(service.logout()).toBeTruthy();
   })));
 
-  it(`isUserAuthenticated should return false`, async(inject([AuthService, HttpTestingController],
+  it(`isUserAuthenticated should return true`, async(inject([AuthService, HttpTestingController],
     (service: AuthService, httpClient: HttpTestingController) => {
-      expect(service.isUserAuthenticated()).toBeFalsy();
+      expect(service.isUserAuthenticated()).toBeTruthy();
   })));
 
   it(`getLoggedInUser should return false`, async(inject([AuthService, HttpTestingController],

@@ -9,17 +9,36 @@ import { AccountService } from './account.service';
 import { EntityService } from '../core/entity.service';
 import { ToastService } from '../core/toast/toast.service';
 import { DatePipe } from '@angular/common';
+import { of } from 'rxjs';
+import { IAccount } from 'app/models/account';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
   let fixture: ComponentFixture<AccountComponent>;
+  const testAccount: IAccount = {
+    accountKey: 1,
+    accountCode: 'test',
+    accountName: 'test',
+    accountDesc: 'test',
+    accountDBA: 'test',
+    accountStartDate: new Date().toISOString(),
+    accountEndDate: new Date().toISOString(),
+    addresses: [],
+    attributes: [],
+    employees: []
+  };
 
   beforeEach(async(() => {
+    const accountService = jasmine.createSpyObj('AccountService', ['getAccount', 'addAccount', 'deleteAccount', 'updateAccount']);
+    accountService.getAccount.and.returnValue( of(testAccount) );
+    accountService.addAccount.and.returnValue( of(testAccount) );
+    accountService.deleteAccount.and.returnValue( of(testAccount) );
+    accountService.updateAccount.and.returnValue( of(null) );
 
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientTestingModule, FormsModule ],
       declarations: [AccountComponent],
-      providers: [AccountService, EntityService, ToastService, DatePipe]
+      providers: [{ provide: AccountService, useValue: accountService }, EntityService, ToastService, DatePipe]
     })
       .compileComponents();
   }));

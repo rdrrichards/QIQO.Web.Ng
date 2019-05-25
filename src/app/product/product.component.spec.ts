@@ -7,17 +7,25 @@ import { ProductService } from './product.service';
 import { ProductComponent } from './product.component';
 import { EntityService } from '../core/entity.service';
 import { CartService } from '../cart/cart.service';
-import { Product } from 'app/models/product';
+import { Product, IProduct } from 'app/models/product';
+import { of } from 'rxjs';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
   let fixture: ComponentFixture<ProductComponent>;
+  const testProduct: IProduct = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
 
   beforeEach(async(() => {
+    const productService = jasmine.createSpyObj('ProductService', ['getProduct', 'addProduct', 'updateProduct', 'deleteProduct']);
+    productService.getProduct.and.returnValue(of(testProduct));
+    productService.addProduct.and.returnValue(of(testProduct));
+    productService.updateProduct.and.returnValue(of(testProduct));
+    productService.deleteProduct.and.returnValue(of(null));
+
     TestBed.configureTestingModule({
       imports: [FormsModule, RouterTestingModule, HttpClientTestingModule ],
       declarations: [ProductComponent],
-      providers: [ ProductService, CartService, EntityService ]
+      providers: [ { provide: ProductService, useValue: productService}, CartService, EntityService ]
     })
       .compileComponents();
   }));
@@ -25,7 +33,7 @@ describe('ProductComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
-    component.product = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
+    component.product = testProduct;
   });
 
   it('should create', () => {
@@ -63,6 +71,16 @@ describe('ProductComponent', () => {
   it('addToCart should return true', () => {
     const product = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
     expect(component.addToCart(product)).toBeUndefined();
+  });
+
+  it('addToCart with quantity should return true', () => {
+    const product = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
+    expect(component.addToCart(product, 2)).toBeUndefined();
+  });
+
+  it('addToCart with quantity and price should return true', () => {
+    const product = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
+    expect(component.addToCart(product, 3, 20.00)).toBeUndefined();
   });
 
   it('onBack should return true', () => {

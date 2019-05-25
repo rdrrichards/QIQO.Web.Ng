@@ -4,9 +4,14 @@ import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NavigationStart, NavigationEnd } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
+    const authService = jasmine.createSpyObj('AuthService', ['getLoggedInUser', 'logout', 'isUserAuthenticated']);
+    authService.isUserAuthenticated.and.returnValue(of(true));
+    authService.getLoggedInUser.and.returnValue(of({userName: 'Test'}));
+    authService.logout.and.returnValue(of(null));
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule, HttpClientTestingModule
@@ -14,7 +19,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      providers: [AuthService]
+      providers: [{provide: AuthService, useValue: authService}]
     }).compileComponents();
   }));
 
@@ -24,10 +29,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('isUserLoggedIn should return false', () => {
+  it('isUserLoggedIn should return true', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.isUserLoggedIn()).toBeFalsy();
+    expect(app.isUserLoggedIn()).toBeTruthy();
   });
 
   it('getUserName should return empty string', () => {
