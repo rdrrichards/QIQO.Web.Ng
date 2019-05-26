@@ -4,20 +4,24 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { CartComponent } from './cart.component';
-import { Product } from 'app/models/product';
+import { Product, IProduct } from 'app/models/product';
 import { ProductService } from 'app/product/product.service';
 import { CartService } from './cart.service';
+import { of } from 'rxjs';
 
 describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
+  const testProduct: IProduct = new Product(1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 1, 1);
 
   beforeEach(async(() => {
+    const productService = jasmine.createSpyObj('ProductService', ['getProduct']);
+    productService.getProduct.and.returnValue(of(testProduct));
 
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientTestingModule, FormsModule ],
       declarations: [CartComponent],
-      providers: [ProductService, CartService]
+      providers: [{ provide: ProductService, useValue: productService}, CartService]
     })
       .compileComponents();
   }));
@@ -67,6 +71,11 @@ describe('CartComponent', () => {
 
   it('isEmpty should return false', () => {
     expect(component.isEmpty()).toBeFalsy();
+  });
+
+  it('isEmpty should return true', () => {
+    component.cart.cartItems = [];
+    expect(component.isEmpty()).toBeTruthy();
   });
 
   it('testAddItem should return void', () => {
