@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { ToastService } from './toast/toast.service';
@@ -9,7 +8,7 @@ export class ExceptionService {
   constructor(private toastService: ToastService) { }
 
   catchBadResponse: (errorResponse: any) => Observable<any> = (errorResponse: any) => {
-    const res = <Response>errorResponse;
+    const res = <any>errorResponse;
     const err = res.json();
     const emsg = err ?
       (err.error ? err.error : JSON.stringify(err)) :
