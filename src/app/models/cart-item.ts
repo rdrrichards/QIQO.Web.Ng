@@ -1,13 +1,13 @@
-import { IProduct } from './product';
+import { Product } from '../models/product';
 
 export interface ICartItem {
-    product: IProduct;
+    product: Product;
     quantity: number;
     price: number;
 }
 
 export class CartItem implements ICartItem {
-    constructor(public product: IProduct,
+    constructor(public product: Product,
         public quantity: number,
         public price: number) {
     }
