@@ -53,6 +53,11 @@ describe('ProductService', () => {
       expect(service.getProducts()).toBeTruthy();
   })));
 
+  it(`getProduct should get`, async(inject([ProductService, HttpTestingController],
+    (service: ProductService, httpClient: HttpTestingController) => {
+      expect(service.getProduct(0)).toBeTruthy();
+  })));
+
   it(`addProduct should get`, async(inject([ProductService, HttpTestingController],
     (service: ProductService, httpClient: HttpTestingController) => {
       expect(service.addProduct(testProduct)).toBeTruthy();

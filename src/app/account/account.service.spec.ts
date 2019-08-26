@@ -46,4 +46,26 @@ describe('AccountService', () => {
     (service: AccountService, httpClient: HttpTestingController) => {
       expect(service.getAccounts()).toBeTruthy();
   })));
+
+  it(`updateAccount should get`, async(inject([AccountService, HttpTestingController],
+    (service: AccountService, httpClient: HttpTestingController) => {
+      const editAccount = {
+        accountKey: 0,
+        accountCode: 'string',
+        accountName: 'string',
+        accountDesc: 'string',
+        accountDBA: 'string',
+        accountStartDate: 'string',
+        accountEndDate: 'string',
+        addresses: [],
+        attributes: [],
+        employees: []
+      };
+      expect(service.updateAccount(editAccount)).toBeTruthy();
+  })));
+
+  it(`deleteAccount should get`, async(inject([AccountService, HttpTestingController],
+    (service: AccountService, httpClient: HttpTestingController) => {
+      expect(service.deleteAccount(0)).toBeTruthy();
+  })));
 });
