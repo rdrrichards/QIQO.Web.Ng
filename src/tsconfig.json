@@ -27,5 +27,9 @@
     "noFallthroughCasesInSwitch":true,
     "noImplicitThis": true,
     "strictNullChecks": true
-  }
+  },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ]
 }
