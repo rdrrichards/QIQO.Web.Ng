@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -13,7 +13,7 @@ describe('OpenOrdersComponent', () => {
   let fixture: ComponentFixture<OpenOrdersComponent>;
   const testOrders: IOrder[] = [];
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const orderService = jasmine.createSpyObj('OrderService', ['getOrders']);
     orderService.getOrders.and.returnValue(of(testOrders));
 

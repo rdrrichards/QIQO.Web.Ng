@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { AccountService } from './account.service';
@@ -15,12 +15,12 @@ describe('AccountService', () => {
     httpClient.verify();
   }));
 
-  it(`should create`, async(inject([AccountService, HttpTestingController],
+  it(`should create`, waitForAsync(inject([AccountService, HttpTestingController],
     (service: AccountService, httpClient: HttpTestingController) => {
       expect(service).toBeTruthy();
   })));
 
-  it(`addAccount should create`, async(inject([AccountService, HttpTestingController],
+  it(`addAccount should create`, waitForAsync(inject([AccountService, HttpTestingController],
     (service: AccountService, httpClient: HttpTestingController) => {
       const editAccount = {
         accountKey: 0,
@@ -37,17 +37,17 @@ describe('AccountService', () => {
       expect(service.addAccount(editAccount)).toBeTruthy();
   })));
 
-  it(`getAccount should get`, async(inject([AccountService, HttpTestingController],
+  it(`getAccount should get`, waitForAsync(inject([AccountService, HttpTestingController],
     (service: AccountService, httpClient: HttpTestingController) => {
       expect(service.getAccount(1)).toBeTruthy();
   })));
 
-  it(`getAccounts should get`, async(inject([AccountService, HttpTestingController],
+  it(`getAccounts should get`, waitForAsync(inject([AccountService, HttpTestingController],
     (service: AccountService, httpClient: HttpTestingController) => {
       expect(service.getAccounts()).toBeTruthy();
   })));
 
-  it(`updateAccount should get`, async(inject([AccountService, HttpTestingController],
+  it(`updateAccount should get`, waitForAsync(inject([AccountService, HttpTestingController],
     (service: AccountService, httpClient: HttpTestingController) => {
       const editAccount = {
         accountKey: 0,
@@ -64,7 +64,7 @@ describe('AccountService', () => {
       expect(service.updateAccount(editAccount)).toBeTruthy();
   })));
 
-  it(`deleteAccount should get`, async(inject([AccountService, HttpTestingController],
+  it(`deleteAccount should get`, waitForAsync(inject([AccountService, HttpTestingController],
     (service: AccountService, httpClient: HttpTestingController) => {
       expect(service.deleteAccount(0)).toBeTruthy();
   })));

@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { AuthService } from './auth.service';
@@ -35,40 +35,40 @@ describe('AuthService', () => {
     httpClient.verify();
   }));
 
-  it(`should create`, async(inject([AuthService, HttpTestingController],
+  it(`should create`, waitForAsync(inject([AuthService, HttpTestingController],
     (service: AuthService, httpClient: HttpTestingController) => {
       expect(service).toBeTruthy();
   })));
 
-  it(`login should be truthy`, async(inject([AuthService, HttpTestingController],
+  it(`login should be truthy`, waitForAsync(inject([AuthService, HttpTestingController],
     (service: AuthService, httpClient: HttpTestingController) => {
       const login = new Login('test', 'testpw', false);
       expect(service.login(login)).toBeTruthy();
   })));
 
-  it(`logout should return truthy`, async(inject([AuthService, HttpTestingController],
+  it(`logout should return truthy`, waitForAsync(inject([AuthService, HttpTestingController],
     (service: AuthService, httpClient: HttpTestingController) => {
       expect(service.logout()).toBeTruthy();
   })));
 
-  it(`register should return truthy`, async(inject([AuthService, HttpTestingController],
+  it(`register should return truthy`, waitForAsync(inject([AuthService, HttpTestingController],
     (service: AuthService, httpClient: HttpTestingController) => {
       expect(service.register({userName: '', password: '', confirmPassword: ''})).toBeTruthy();
   })));
 
-  it(`isUserAuthenticated should return true`, async(inject([AuthService, HttpTestingController],
+  it(`isUserAuthenticated should return true`, waitForAsync(inject([AuthService, HttpTestingController],
     (service: AuthService, httpClient: HttpTestingController) => {
       localStorage.setItem('user', JSON.stringify(new Login('', '', false)));
       expect(service.isUserAuthenticated()).toBeTruthy();
   })));
 
-  it(`isUserAuthenticated should return false`, async(inject([AuthService, HttpTestingController],
+  it(`isUserAuthenticated should return false`, waitForAsync(inject([AuthService, HttpTestingController],
     (service: AuthService, httpClient: HttpTestingController) => {
       localStorage.removeItem('user');
       expect(service.isUserAuthenticated()).toBeFalsy();
   })));
 
-  it(`getLoggedInUser should return something`, async(inject([AuthService, HttpTestingController],
+  it(`getLoggedInUser should return something`, waitForAsync(inject([AuthService, HttpTestingController],
     (service: AuthService, httpClient: HttpTestingController) => {
       localStorage.setItem('user', JSON.stringify(new Login('', '', false)));
       expect(service.getLoggedInUser()).toBeTruthy();

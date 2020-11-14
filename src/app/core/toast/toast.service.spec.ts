@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { ToastService } from './toast.service';
 
 describe('ToastService', () => {
@@ -8,11 +8,11 @@ describe('ToastService', () => {
     });
   });
 
-  it(`should create`, async(inject([ToastService], (service: ToastService) => {
+  it(`should create`, waitForAsync(inject([ToastService], (service: ToastService) => {
     expect(service).toBeTruthy();
   })));
 
-  it(`activate should return undefined`, async(inject([ToastService], (service: ToastService) => {
+  it(`activate should return undefined`, waitForAsync(inject([ToastService], (service: ToastService) => {
     expect(service.activate()).toBeUndefined();
   })));
 

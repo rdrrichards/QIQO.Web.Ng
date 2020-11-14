@@ -1,6 +1,6 @@
 import { FormsModule } from '@angular/forms';
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -28,7 +28,7 @@ describe('AccountComponent', () => {
     employees: []
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const accountService = jasmine.createSpyObj('AccountService', ['getAccount', 'addAccount', 'deleteAccount', 'updateAccount']);
     accountService.getAccount.and.returnValue( of(testAccount) );
     accountService.addAccount.and.returnValue( of(testAccount) );

@@ -21,4 +21,4 @@ export const routes: Routes = [
 
 export const appRoutingProviders: any[] = [ CanDeactivateGuard ];
 
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });

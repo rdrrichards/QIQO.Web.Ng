@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
@@ -7,7 +7,7 @@ import { NavigationStart, NavigationEnd } from '@angular/router';
 import { of } from 'rxjs';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const authService = jasmine.createSpyObj('AuthService', ['getLoggedInUser', 'logout', 'isUserAuthenticated']);
     authService.isUserAuthenticated.and.returnValue(of(true));
     authService.getLoggedInUser.and.returnValue(of({userName: 'Test'}));

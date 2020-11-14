@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { EntityService } from './entity.service';
 
 describe('EntityService', () => {
@@ -8,16 +8,16 @@ describe('EntityService', () => {
     });
   });
 
-  it(`should create`, async(inject([EntityService], (service: EntityService) => {
+  it(`should create`, waitForAsync(inject([EntityService], (service: EntityService) => {
     expect(service).toBeTruthy();
   })));
 
-  it(`clone should return undefined`, async(inject([EntityService], (service: EntityService) => {
+  it(`clone should return undefined`, waitForAsync(inject([EntityService], (service: EntityService) => {
     const cart = { id: 'test', account: undefined, orderDeliverByDate: undefined, cartItems: [] };
     expect(service.clone(cart)).toBeDefined(cart);
   })));
 
-  it(`propertiesDiffer should return undefined`, async(inject([EntityService], (service: EntityService) => {
+  it(`propertiesDiffer should return undefined`, waitForAsync(inject([EntityService], (service: EntityService) => {
     const cart = { id: 'test', account: undefined, orderDeliverByDate: undefined, cartItems: [] };
     expect(service.propertiesDiffer(cart, cart)).toBeUndefined();
   })));

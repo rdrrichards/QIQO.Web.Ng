@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { OrderService } from './order.service';
@@ -15,12 +15,12 @@ describe('OrderService', () => {
     httpClient.verify();
   }));
 
-  it(`should create`, async(inject([OrderService, HttpTestingController],
+  it(`should create`, waitForAsync(inject([OrderService, HttpTestingController],
     (service: OrderService, httpClient: HttpTestingController) => {
       expect(service).toBeTruthy();
   })));
 
-  it(`addOrder should create`, async(inject([OrderService, HttpTestingController],
+  it(`addOrder should create`, waitForAsync(inject([OrderService, HttpTestingController],
     (service: OrderService, httpClient: HttpTestingController) => {
       const editAccount = {
         accountKey: 0,
@@ -52,7 +52,7 @@ describe('OrderService', () => {
       expect(service.addOrder(order)).toBeTruthy();
   })));
 
-  it(`updateOrder should update`, async(inject([OrderService, HttpTestingController],
+  it(`updateOrder should update`, waitForAsync(inject([OrderService, HttpTestingController],
     (service: OrderService, httpClient: HttpTestingController) => {
       const editAccount = {
         accountKey: 0,
@@ -84,27 +84,27 @@ describe('OrderService', () => {
       expect(service.updateOrder(order)).toBeTruthy();
   })));
 
-  it(`getOrder should get`, async(inject([OrderService, HttpTestingController],
+  it(`getOrder should get`, waitForAsync(inject([OrderService, HttpTestingController],
     (service: OrderService, httpClient: HttpTestingController) => {
       expect(service.getOrder(1)).toBeTruthy();
   })));
 
-  it(`getOrders should get`, async(inject([OrderService, HttpTestingController],
+  it(`getOrders should get`, waitForAsync(inject([OrderService, HttpTestingController],
     (service: OrderService, httpClient: HttpTestingController) => {
       expect(service.getOrders()).toBeTruthy();
   })));
 
-  it(`getAccountOrder should get`, async(inject([OrderService, HttpTestingController],
+  it(`getAccountOrder should get`, waitForAsync(inject([OrderService, HttpTestingController],
     (service: OrderService, httpClient: HttpTestingController) => {
       expect(service.getAccountOrder(1, 1)).toBeTruthy();
   })));
 
-  it(`getAccountOrders should get`, async(inject([OrderService, HttpTestingController],
+  it(`getAccountOrders should get`, waitForAsync(inject([OrderService, HttpTestingController],
     (service: OrderService, httpClient: HttpTestingController) => {
       expect(service.getAccountOrders(1)).toBeTruthy();
   })));
 
-  it(`deleteOrder should get`, async(inject([OrderService, HttpTestingController],
+  it(`deleteOrder should get`, waitForAsync(inject([OrderService, HttpTestingController],
     (service: OrderService, httpClient: HttpTestingController) => {
       expect(service.deleteOrder(1)).toBeTruthy();
   })));

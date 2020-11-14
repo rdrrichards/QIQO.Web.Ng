@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -16,7 +16,7 @@ describe('ProductListComponent', () => {
   let fixture: ComponentFixture<ProductListComponent>;
   const testProducts: IProduct[] = [];
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const productService = jasmine.createSpyObj('ProductService', ['getProductPage']);
     productService.getProductPage.and.returnValue(of(testProducts));
 
