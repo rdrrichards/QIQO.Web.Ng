@@ -109,15 +109,6 @@
               "src/assets/bootstrap.min.css"
             ]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.json"
-            ],
-            "exclude": []
-          }
         }
       }
     },
@@ -131,15 +122,6 @@
           "options": {
             "protractorConfig": "./protractor.conf.js",
             "devServerTarget": "qiqoAngular:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "e2e/tsconfig.json"
-            ],
-            "exclude": []
           }
         }
       }
